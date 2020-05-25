@@ -1,6 +1,12 @@
+<<<<<<< HEAD
 <?xml version="1.0" encoding="utf-8"?>
 <widget android-versionCode="2020052501" id="ch.studerraimann.ilias.zwh" ios-CFBundleVersion="20200525.1" version="4.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>ZWH</name>
+=======
+<?xml version='1.0' encoding='utf-8'?>
+<widget android-versionCode="2020051201" id="ch.studerraimann.ilias.offline" ios-CFBundleVersion="20200512.1" version="4.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>ILIAS Pegasus</name>
+>>>>>>> upstream/master
     <description>Download, sync and store ILIAS-files on your device</description>
     <author email="info@studer-raimann.ch" href="https://www.studer-raimann.ch/">studer + raimann ag</author>
     <content src="index.html"/>
@@ -136,5 +142,9 @@
     <plugin name="cordova-plugin-file-opener2" spec="2.2.0">
         <variable name="ANDROID_SUPPORT_V4_VERSION" value="28.+"/>
     </plugin>
+<<<<<<< HEAD
     <allow-navigation href="http://192.168.99.79:8100" sessionid="11c2f33c"/>
 </widget>
+=======
+</widget>
+>>>>>>> upstream/master
