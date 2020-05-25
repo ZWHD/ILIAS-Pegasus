@@ -1,10 +1,14 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 <?xml version="1.0" encoding="utf-8"?>
 <widget android-versionCode="2020052501" id="ch.studerraimann.ilias.zwh" ios-CFBundleVersion="20200525.1" version="4.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>ZWH</name>
 =======
 <?xml version='1.0' encoding='utf-8'?>
+=======
+<?xml version="1.0" encoding="utf-8"?>
+>>>>>>> parent of e99b9df... Merge branch 'release/4.0.1' into 'master'
 =======
 <?xml version="1.0" encoding="utf-8"?>
 >>>>>>> parent of e99b9df... Merge branch 'release/4.0.1' into 'master'
@@ -148,11 +152,16 @@
     </plugin>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     <allow-navigation href="http://192.168.99.79:8100" sessionid="11c2f33c"/>
 </widget>
 =======
 </widget>
 >>>>>>> upstream/master
+=======
+    <allow-navigation href="http://192.168.99.79:8100" sessionid="11c2f33c"/>
+</widget>
+>>>>>>> parent of e99b9df... Merge branch 'release/4.0.1' into 'master'
 =======
     <allow-navigation href="http://192.168.99.79:8100" sessionid="11c2f33c"/>
 </widget>
