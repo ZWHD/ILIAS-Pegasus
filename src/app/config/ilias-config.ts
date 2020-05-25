@@ -1,7 +1,7 @@
 /** angular */
 import {Injectable, InjectionToken} from "@angular/core";
 /** misc */
-import {ILIASConfig} from "./ilias-config";
+// import {ILIASConfig} from "./ilias-config";
 import {HttpClient, HttpResponse} from "../providers/http";
 import {isDefined} from "../util/util.function";
 
@@ -88,7 +88,6 @@ export interface ConfigProvider {
 
   private async loadFile(): Promise<ILIASConfig> {
     const response: HttpResponse = await this.http.get(CONFIG_FILE);
-
     return response.json<ILIASConfig>(configSchema);
   }
 }
