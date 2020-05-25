@@ -8,14 +8,13 @@
         <ion-row padding-top justify-content-center align-items-center	 class=login-welcome-row>
                 <h1 class=huge-login-header text-center>{{ 'login.hello' | translate:[]}}</h1>
         </ion-row>
-        <ion-row padding justify-content-center align-items-end	 class=login-institution-row>
-            <ion-item color="primary">
+        <ion-row padding justify-content-center align-items-end	>
+            <ion-item color="transparent">
                 <ion-label position="stacked" text-center></ion-label>
                 <ion-select [(ngModel)]="installationId" interface="action-sheet" text-center placeholder="{{ 'login.instructions' | translate:[]}}" >
                     <ion-select-option *ngFor="let installation of installations" [value]="installation.id">{{ installation.title }}</ion-select-option>
                 </ion-select>
             </ion-item>
-            <br>
         </ion-row>
 
         <ion-row justify-content-center>
@@ -23,9 +22,10 @@
         </ion-row>
 
         <ion-row padding justify-content-center align-items-end class=login-version-row>
-            <ion-item color="primary" text-center no-lines>
+            <ion-item color="transparent" text-center no-lines>
                 Version {{appVersionStr | async}}
             </ion-item>
+            <br>
         </ion-row>
 
         <ion-row justify-content-center class=styled-bottom-row>

@@ -1,5 +1,5 @@
 <ion-header>
-	<ion-toolbar class="onboarding-toolbar" color=primary>
+	<ion-toolbar>
 		<ion-buttons slot="primary">
 		  <ion-button (click)="nextSlide()">
 				{{ 'onboarding.next' | translate:[]}}
@@ -7,13 +7,13 @@
 		</ion-buttons>
 	  </ion-toolbar>
 </ion-header>
-<ion-content class="page_onboarding" fullscreen=true>
+<ion-content fullscreen=true class="page_onboarding">
 		<ion-slides pager="true" #slides (ionSlideDrag)="slideChanged()">
 				<ion-slide class="step-one">
 					<img src="assets/img/onboarding_welcome.png">
 					<h1>{{ 'onboarding.title1' | translate:[]}}</h1>
 					<ion-grid>
-						<ion-row> 
+						<ion-row>
 							<ion-col size="2" align-self-center >
 									<ion-img  src="assets/icon/obj_file.svg"> </ion-img>
 							</ion-col>
@@ -33,7 +33,7 @@
 									<p>{{ 'onboarding.function3' | translate:[]}}</p>
 							</ion-col>
 							<ion-col size="12" class="ion-text-center">
-									<ion-button color="light" shape="round" (click)="nextSlide()">{{ 'onboarding.next' | translate:[]}}</ion-button>					
+									<ion-button color="light" shape="round" (click)="nextSlide()">{{ 'onboarding.next' | translate:[]}}</ion-button>
 							</ion-col>
 						</ion-row>
 					</ion-grid>
@@ -65,12 +65,10 @@
 			</ion-slides>
 </ion-content>
 
-
-
-<!-- 
+<!--
 <ion-content padding color=nobg-w class=page_onboarding>
 	<ion-slides #slides class=white-text>
-		
+
 
 		<ion-slide class="bordeaux-gradient" padding>
 			<ion-header color="nobg-w" no-shadow no-border>

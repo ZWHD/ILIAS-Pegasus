@@ -95,6 +95,7 @@ function generateServerConfigFile(brand, config) {
         }
     }
 
+
     if (config_out.installations.length !== config.ilias_installation_ids.length) {
         let msg = `(set_brand.js) unable to match all ilias installation ids in ${JSON.stringify(config.ilias_installation_ids)} . `;
         msg += `this selection of ids is set in 'src/assets/${brand}/config.json' and the ilias installations are set in 'branding/common/config/server.config.json'`;
@@ -106,6 +107,7 @@ function generateServerConfigFile(brand, config) {
 
 // set values in "config.xml"
 function setValuesInProjectConfig(config) {
+    if (!config.projectConfig) { return }
     // for each entry, the 'setValueInTag'-method is called until the tag was found once
     let toDoList = [
         {tag: "<widget ", pre: "id=\"", value: config.projectConfig.id, post: "\"", done: false},
