@@ -136,19 +136,5 @@
     <plugin name="cordova-plugin-file-opener2" spec="2.2.0">
         <variable name="ANDROID_SUPPORT_V4_VERSION" value="28.+"/>
     </plugin>
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
     <allow-navigation href="http://192.168.99.79:8100" sessionid="11c2f33c"/>
 </widget>
-=======
-</widget>
->>>>>>> upstream/master
-=======
-    <allow-navigation href="http://192.168.99.79:8100" sessionid="11c2f33c"/>
-</widget>
->>>>>>> parent of e99b9df... Merge branch 'release/4.0.1' into 'master'
-=======
-    <allow-navigation href="http://192.168.99.79:8100" sessionid="11c2f33c"/>
-</widget>
->>>>>>> parent of e99b9df... Merge branch 'release/4.0.1' into 'master'
