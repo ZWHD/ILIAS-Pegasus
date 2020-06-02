@@ -22,11 +22,33 @@
 
 // pages/news
 // --------------------------------------------------
-.page_news {
-     //font-sizes
-     ion-card-title{
-        font-size: 1.2rem;
 
+news-page{
+    --ion-background-color: var(--custom-primary-gradient);
+
+    ion-list{
+        padding-top:0px !important;
+    }
+
+    ion-item {
+        --inner-padding-end: 0px;
+    }
+
+    ion-card{
+        width:100%;
+        margin: 0px 0px 10px 10px !important;
+        border-color: var(--ion-item-border-color);
+        border-style: none none solid none ;
+        border-width: var(--ion-item-border-width);
+        border-radius: 0% !important;
+        box-shadow: none !important;
+    }
+
+    ion-card-subtitle{
+        font-weight: 300 !important;
+    }
+    ion-card-content{
+        color: white;
     }
 
     ion-card-header{
@@ -36,6 +58,7 @@
     .object-presenter-icon{
         height:4rem;
     }
+
 }
 
 
@@ -51,13 +74,11 @@
 // pages/desktop
 // --------------------------------------------------
 
-.page_desktop {
-    --background: url('src/assets/img/header.svg') no-repeat top center / 100vw;
-    .desktop-grid{
-        padding-top: 24px;
-    }
+page-desktop{
 
-    .tile-image {
+    --ion-background-color: var(--custom-primary-gradient);
+
+    ion-img {
         height: auto;
         width: 60%;
         margin: auto;
@@ -65,10 +86,12 @@
         pointer-events: none;
     }
 
-
     .tile {
-    opacity: 0.9;
-    border-radius: 2%;
+        opacity: 0.9;
+        border-color: var(--ion-item-border-color);
+        border-style:solid;
+        border-width: var(--ion-item-border-width);
+        border-radius: 2%;
     }
 
 }
@@ -76,31 +99,39 @@
 // pages/menu
 // --------------------------------------------------
 
+page-menu{
 
-.page_menu {
+    --ion-background-color: var(--custom-primary-gradient);
     height: 100%;
-   .menu-bottom-image{
-       position: absolute;
-       bottom: 0;
-   }
 
-    ion-list{
-        padding-top: 0;
-        padding-bottom: 0;
+    ion-item{
+        // --border-width: 0;
+        --inner-border-width: 0px 0px 1px 0px;
+        --border-color: var(--ion-item-border-color);
     }
 
-    .privacy-iq{
-        display: none
-    }
-    .privacy-zwh{
-        display: none
+    .menu-bottom-image{
+        position: absolute;
+        bottom: 0;
     }
 
-    .privacy-mfkjusb{
-        display: none
-    }
+     ion-list{
+         padding-top: 0;
+         padding-bottom: 0;
+     }
 
+     .privacy-iq{
+         display: none
+     }
+     .privacy-zwh{
+         display: none
+     }
+
+     .privacy-mfkjusb{
+         display: none
+     }
 }
+
 
 // pages/settings
 // --------------------------------------------------

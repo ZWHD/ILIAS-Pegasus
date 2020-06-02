@@ -7,6 +7,7 @@ import {IonicModule} from "@ionic/angular";
 /** misc */
 import {NewsPage} from "./news";
 import {TranslateModule} from "@ngx-translate/core";
+import { StringPipe } from "src/app/pipes/string.pipe";
 
 const routes: Routes = [
     {path: "", component: NewsPage}
@@ -21,6 +22,9 @@ const routes: Routes = [
         TranslateModule,
         RouterModule.forChild(routes)
     ],
-    declarations: [NewsPage]
+    declarations: [
+        NewsPage,
+        StringPipe
+    ]
 })
 export class NewsPageModule {}

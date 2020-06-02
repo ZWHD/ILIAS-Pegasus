@@ -1,5 +1,5 @@
 /** angular */
-import {Component, Inject} from "@angular/core";
+import {Component, Inject, OnInit} from "@angular/core";
 import {NavController} from "@ionic/angular";
 /** services */
 import {Builder} from "../../services/builder.base";
@@ -8,6 +8,7 @@ import {LINK_BUILDER, LinkBuilder} from "../../services/link/link-builder.servic
 import {OPEN_OBJECT_IN_ILIAS_ACTION_FACTORY, OpenObjectInILIASAction} from "../../actions/open-object-in-ilias-action";
 import {ILIASInstallation} from "../../config/ilias-config";
 import {ThemeProvider} from "../../providers/theme/theme.provider";
+import { Router } from "@angular/router";
 
 /**
  * Generated class for the DesktopPage page.
@@ -20,11 +21,14 @@ import {ThemeProvider} from "../../providers/theme/theme.provider";
     selector: "page-desktop",
     templateUrl: "desktop.html",
 })
-export class DesktopPage {
+export class DesktopPage implements OnInit {
 
     readonly installations: Array<ILIASInstallation> = [];
 
+
+
     constructor(
+        private router: Router,
         private readonly navCtrl: NavController,
         @Inject(OPEN_OBJECT_IN_ILIAS_ACTION_FACTORY)
         private readonly openInIliasActionFactory: (title: string, urlBuilder: Builder<Promise<string>>) => OpenObjectInILIASAction,
@@ -32,14 +36,19 @@ export class DesktopPage {
         private readonly linkBuilder: LinkBuilder
     ) {}
 
+    ngOnInit(): void {
+        // alert('On Init ran')
+    }
+
     // count the number of loaded SVGs and set theme once all of them are loaded
-    private svgLoaded(): void {
+    svgLoaded(): void {
         ThemeProvider.setCustomColor();
     }
 
     // navigate to a tab
     async navigateTo(url: string): Promise<void> {
-        await this.navCtrl.navigateForward(`tabs/${url}`);
+        await this.router.navigate([`tabs/${url}`])
+        // await this.navCtrl.navigateForward(`tabs/${url}`);
     }
 
     // open repo in Browser inApp for iOS, external for Android

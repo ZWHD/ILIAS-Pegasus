@@ -96,11 +96,11 @@ export class AppComponent {
         this.user = AuthenticationProvider.getUser();
 
         await this.configureTranslation();
-
         if(AuthenticationProvider.isLoggedIn()) {
             await this.sync.resetOfflineSynchronization(true);
             await this.themeProvider.loadResources();
-            await this.navCtrl.navigateRoot("tabs");
+            await this.router.navigate(['/tabs']);
+            // await this.navCtrl.navigateRoot("tabs");
         } else {
             await this.presentOnboardingModal();
         }

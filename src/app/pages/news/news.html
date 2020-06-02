@@ -8,7 +8,7 @@
         </ion-title>
     </ion-toolbar>
 </ion-header>
-<ion-content class="page_news">
+<ion-content class="ion-no-padding ion-no-margin">
 
     <ion-refresher
         (ionRefresh)="startNewsSync($event)"
@@ -21,23 +21,46 @@
         </ion-refresher-content>
     </ion-refresher>
 
-    <ion-list color="list-element">
-        <ion-card *ngFor="let newsPresenter of newsPresenters" (click)="openNews(newsPresenter[0].newsId, newsPresenter[0].newsContext)" color="list-element" class="list-element">
+    <ion-grid>
+        <ion-row>
+            <ion-col size="12" size-md="8" size-lg="7" size-xl="6">
+                <ion-list>
+                    <ion-item  class="ion-no-padding" lines="none" *ngFor="let newsPresenter of newsPresenters" (click)="openNews(newsPresenter[0].newsId, newsPresenter[0].newsContext)">
+                        <ion-avatar >
+                            <img src="{{newsPresenter[1].icon()}}">
+                        </ion-avatar>
+
+                        <ion-card color="transparent" >
+                            <ion-card-header>
+                                <ion-card-subtitle *ngIf="newsPresenter[0].title">{{newsPresenter[0].title}}</ion-card-subtitle>
+                                <ion-card-subtitle *ngIf="newsPresenter[0].subtitle">{{newsPresenter[0].subtitle}}</ion-card-subtitle>
+                            </ion-card-header>
+                                <ion-card-content  *ngIf="(newsPresenter[0].content | toString) !== ''" [innerHtml]="newsPresenter[0].content"></ion-card-content>
+                                <ion-card-subtitle class="ion-text-right ion-margin-end ion-margin-bottom">{{newsPresenter[0].updateDate | date:"dd. MMM HH:mm"}}</ion-card-subtitle>
+                     </ion-card>
+                </ion-item>
+
+
+        <!-- <ion-card *ngFor="let newsPresenter of newsPresenters" (click)="openNews(newsPresenter[0].newsId, newsPresenter[0].newsContext)">
                 <ion-card-header>
                         <ion-card-subtitle>{{newsPresenter[0].updateDate | date:"dd. MMM yyyy HH:mm"}}</ion-card-subtitle>
-                        <ion-card-title> 
+                        <ion-card-title>
                             <ion-avatar item-start>
                                 <img src="{{newsPresenter[1].icon()}}">
                             </ion-avatar>
                             {{newsPresenter[0].title}}
                         </ion-card-title>
-                      </ion-card-header>
+                </ion-card-header>
                       <ion-card-content>
                             <p class="info-text">{{newsPresenter[0].subtitle}}</p>
                             <p class="info-text" [innerHtml]="newsPresenter[0].content"></p>
                     </ion-card-content>
 
-        </ion-card>
+        </ion-card> -->
     </ion-list>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+
 
 </ion-content>

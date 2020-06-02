@@ -10,10 +10,11 @@ import {ILIASObjectAction} from "../../actions/object-action";
 import {OPEN_OBJECT_IN_ILIAS_ACTION_FACTORY, OpenObjectInILIASAction} from "../../actions/open-object-in-ilias-action";
 import {Logger} from "../../services/logging/logging.api";
 import {Logging} from "../../services/logging/logging.service";
-import {ILIASObjectPresenter} from "../../presenters/object-presenter";
+import {ILIASObjectPresenter, GenericILIASObjectPresenter} from "../../presenters/object-presenter";
 import {TranslateService} from "@ngx-translate/core";
 import {AuthenticationProvider} from "../../providers/authentication.provider";
 import {ILIASObjectPresenterFactory} from "../../presenters/presenter-factory";
+import { CourseObjectPresenter } from "src/app/presenters/course-presenter";
 
 /**
  * Generated class for the NewsComponent component.
@@ -22,7 +23,7 @@ import {ILIASObjectPresenterFactory} from "../../presenters/presenter-factory";
  * Components.
  */
 @Component({
-    selector: "newsPresenters",
+    selector: "news-page",
     templateUrl: "news.html"
 })
 export class NewsPage
@@ -30,6 +31,7 @@ export class NewsPage
 {
 
     newsPresenters: Array<[NewsItemModel, ILIASObjectPresenter]>;
+
     private readonly log: Logger = Logging.getLogger(NewsPage.name);
 
     constructor(

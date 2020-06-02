@@ -7,33 +7,15 @@
 
 
 :root {
-    // whether the color-values are synchronized with the setting in the pegasus-helper-plugin
-    // set to "true" or "false"
+
+    // Mark: Custom Variables
+    --custom-primary-gradient: linear-gradient(to top , var(--ion-color-primary), var(--ion-color-secondary));
     --theme-from-plugin: "true";
 
     // font
     --ion-font-family:  "Raleway", sans-serif;
 
-    // Custom Tab Colorr
-
-    ion-tab-button.tab-selected {
-        ion-icon, ion-label {
-          color: var(--ion-color-primary) !important;
-          --ion-color-base: var(--ion-color-primarry) !important;
-        }
-      }
-
-      ion-tab-button {
-        ion-icon, ion-label {
-          color: var(--ion-color-light-grey) !important;
-          --ion-color-base: var(--ion-color-light-grey) !important;
-        }
-      }
-
-
     // colors
-  --ion-item-border-color: transparent;
-
   --ion-color-primary: #004D9F;
   --ion-color-primary-rgb: 0,77,159;
   --ion-color-primary-contrast: #ffffff;
@@ -104,15 +86,34 @@
   --ion-color-transparent-shade: transparent;
   --ion-color-transparent-tint: #f5f6f9;
 
-    //tabbar colors
+//    --ion-text-color: white;
+//    --ion-border-color: white;
+    // MARK: root-border-color
+    --ion-item-border-color: var(--ion-color-light);
+    --ion-item-border-width: 0.3px;
+    --ion-item-box-shadow: 0 3px 1px -2px rgba(0,0,0,.2),0 2px 2px 0 rgba(0,0,0,.14),0 1px 5px 0 rgba(0,0,0,.12);
+    --ion-item-text-color: var(--ion-color-light);
+    --ion-item-color: var(--ion-color-light);
+    --ion-item-background: var(--ion-color-transparent);
 
-    ion-tabs{
-        --color: #1c1c21;                     // already exists
-        --ion-tabbar-color: rgba(var(--ion-text-color-rgb), 0.4);    // suggested
-        --ion-tabbar-color-selected: var(--ion-text-color);          // suggested
-     }
+    --ion-margin: 10px;
+    --ion-padding: 10px;
+    // MARK: root-tab-bar-color
+    ion-tab-bar{
+        --background: var(--ion-color-transparent);
+        --color: var(--ion-color-transparent);
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+    }
 
-  --custom-primary-gradient: linear-gradient(to top , var(--ion-color-primary), var(--ion-color-secondary))
+    ion-tab-button{
+        --color: var(--ion-color-light-shade);
+        --color-selected: var(--ion-color-light);
+    }
+
+
   }
 
   // MARK: Darkmode
@@ -227,10 +228,3 @@ $gradient-col2: #9bc8e5;
   --ion-color-shade: var(--ion-color-light-grey-shade);
   --ion-color-tint: var(--ion-color-light-grey-tint);
 }
-
-
-// // misc
-
-// .white-text {
-//     color: white;
-// }
