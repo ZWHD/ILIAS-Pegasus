@@ -81,7 +81,8 @@
 
   --ion-color-transparent: transparent;
   --ion-color-transparent-rgb: 244,244,244;
-  --ion-color-transparent-contrast: #d7d8da;
+  --ion-color-transparent-contrast: white;
+//   --ion-color-transparent-contrast: #d7d8da;
   --ion-color-transparent-contrast-rgb: 0,0,0;
   --ion-color-transparent-shade: transparent;
   --ion-color-transparent-tint: #f5f6f9;
@@ -98,6 +99,7 @@
 
     --ion-margin: 10px;
     --ion-padding: 10px;
+
     // MARK: root-tab-bar-color
     ion-tab-bar{
         --background: var(--ion-color-transparent);

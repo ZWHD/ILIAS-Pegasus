@@ -54,6 +54,7 @@ interface PageState {
     templateUrl: "object-list.html",
 })
 export class ObjectListPage {
+
     state: PageState = {
         favorites: undefined,
         online: undefined,

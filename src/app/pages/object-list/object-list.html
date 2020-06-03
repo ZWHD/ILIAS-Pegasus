@@ -22,12 +22,13 @@
     </ion-toolbar>
 </ion-header>
 
-<ion-content fullscreen="true" class="page_object_list">
+<ion-content fullscreen="true">
+
     <ion-refresher  slot="fixed"
      (ionRefresh)="loadAndRenderContent($event)"
      [closeDuration]="400"
      [pullMin]="150">
-            <ion-refresher-content color="medium"
+            <ion-refresher-content color="secondary"
                 pullingIcon="arrow-dropdown"
                 pullingText="Pull to refresh"
                 refreshingSpinner="dots"
@@ -36,9 +37,9 @@
     </ion-refresher>
 
   <!-- status : display object-list, synchronization complete -->
-    <ng-container >
-            <ion-list *ngIf="checkPageState({favorites: false, online: true, loading: false}) || checkPageState({favorites: true, loading: false})">
-                    <div class="" *ngIf="parent !== undefined">
+    <ng-container>
+            <ion-list class="ion-margin-top" *ngIf="checkPageState({favorites: false, online: true, loading: false}) || checkPageState({favorites: true, loading: false})">
+                    <div *ngIf="parent !== undefined">
                         <ion-card mode="ios" no-lines *ngIf="parent.hasPageLayout" text-wrap="" (click)="openInIlias()" color="primary" class="list-element">
                             <ion-card-content>
                                 <ion-icon name="information-circle-outline" item-start></ion-icon>
@@ -53,16 +54,16 @@
                             </ion-card-content>
                         </ion-card>
                     </div>
-                        <ion-card   class="ion-margin-horizontal"  button="true" *ngFor="let entry of content" (click)="onClick(entry.object)">
+                        <ion-card   class="ion-margin-horizontal"  button="true" *ngFor="let entry of content" (click)="onClick(entry.object)" color="transparent">
                             <ion-row align-items-center>
                                 <ion-col size="2">
                                     <img class="object-presenter-icon" [src]="entry.presenter.icon()">
-                                    <ion-badge *ngIf="entry.object.isLinked()" color="nobg-w" class="badge-link">
-                                        <img src="{{this.getBadgeSrc()}}" class="badge-logo">
+                                    <ion-badge *ngIf="entry.object.isLinked()" >
+                                        <img src="{{this.getBadgeSrc()}}">
                                     </ion-badge>
                                 </ion-col>
                                 <ion-col size="7">
-                                    <ion-card-content >
+                                    <ion-card-content>
                                         <span *ngIf="entry.presenter.showTypeAsText()">{{ entry.presenter.typeLangVar() | translate:[] }}:</span>
                                         {{ entry.presenter.title() }}
                                         <span *ngIf="!entry.presenter.title()">{{ 'no_title' | translate:[] }}</span>
@@ -70,17 +71,17 @@
                                 </ion-col>
                                 <ion-col size="1" height="100%" justify-content-end>
                                     <ion-buttons height="100%" mode="ios">
-                                        <ion-button height="100%" mode="ios" color="transparent"  *ngIf="!entry.object.isFavorite" (click)="executeSetFavoriteValueAction(entry.object, true);$event.stopPropagation();">
-                                            <ion-icon button="true" slot="icon-only" src="./assets/icon/favorites-outline.svg" color="secondary"></ion-icon>
+                                        <ion-button height="100%" mode="ios" color="primary"  *ngIf="!entry.object.isFavorite" (click)="executeSetFavoriteValueAction(entry.object, true);$event.stopPropagation();">
+                                            <ion-icon button="true" slot="icon-only" src="./assets/icon/favorites-outline.svg" color="primary"></ion-icon>
                                         </ion-button>
-                                        <ion-button height="100%" mode="ios" color="transparent" *ngIf="entry.object.isFavorite === 1" (click)="executeSetFavoriteValueAction(entry.object, false);$event.stopPropagation();">
-                                            <ion-icon slot="icon-only" src="./assets/icon/favorites.svg" color="secondary"></ion-icon>
+                                        <ion-button height="100%" mode="ios" color="primary" *ngIf="entry.object.isFavorite === 1" (click)="executeSetFavoriteValueAction(entry.object, false);$event.stopPropagation();">
+                                            <ion-icon slot="icon-only" src="./assets/icon/favorites.svg" color="primary"></ion-icon>
                                         </ion-button>
-                                        <ion-button height="100%" mode="ios" color="transparent"  *ngIf="entry.object.isFavorite === 2" (click)="executeSetFavoriteValueAction(entry.object, false);$event.stopPropagation()">
-                                            <ion-icon slot="icon-only" name="md-download" color="secondary"></ion-icon>
+                                        <ion-button height="100%" mode="ios" color="primary"  *ngIf="entry.object.isFavorite === 2" (click)="executeSetFavoriteValueAction(entry.object, false);$event.stopPropagation()">
+                                            <ion-icon slot="icon-only" name="md-download" color="primary"></ion-icon>
                                         </ion-button>
-                                        <ion-button height="100%" mode="ios" color="transparent"  (click)="showActions(entry.object);$event.stopPropagation();">
-                                            <ion-icon button="true" slot="icon-only" name="md-more" color="secondary"></ion-icon>
+                                        <ion-button height="100%" mode="ios" color="primary"  (click)="showActions(entry.object);$event.stopPropagation();">
+                                            <ion-icon button="true" slot="icon-only" name="md-more" color="primary"></ion-icon>
                                         </ion-button>
                                     </ion-buttons>
                                 </ion-col>
