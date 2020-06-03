@@ -37,8 +37,13 @@
                             </ion-card-header>
                                 <ion-card-content  *ngIf="(newsPresenter[0].content | toString) !== ''" [innerHtml]="newsPresenter[0].content"></ion-card-content>
                                 <ion-card-subtitle class="ion-text-right ion-margin-end ion-margin-bottom">{{newsPresenter[0].updateDate | date:"dd. MMM HH:mm"}}</ion-card-subtitle>
-                     </ion-card>
-                </ion-item>
+                        </ion-card>
+                    </ion-item>
+                    <ion-card *ngIf="newsPresenters === undefined">
+                        <ion-card-content>
+                            <p class="info-text">{{ 'new-objects.no_new_items' | translate:[] }}</p>
+                    </ion-card-content>
+                    </ion-card>
 
 
         <!-- <ion-card *ngFor="let newsPresenter of newsPresenters" (click)="openNews(newsPresenter[0].newsId, newsPresenter[0].newsContext)">
@@ -56,7 +61,12 @@
                             <p class="info-text" [innerHtml]="newsPresenter[0].content"></p>
                     </ion-card-content>
 
-        </ion-card> -->
+        </ion-card>
+        <ion-card *ngIf="newsPresenters === undefined">
+            <ion-card-content>
+                <p class="info-text">{{ 'new-objects.no_new_items' | translate:[] }}</p>
+        </ion-card-content>
+        </ion-card>
     </ion-list>
             </ion-col>
         </ion-row>
