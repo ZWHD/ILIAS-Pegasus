@@ -9,6 +9,7 @@ export enum LoadingPageType {
 }
 
 @Component({
+    selector: 'page-loading',
     templateUrl: "loading.html"
 })
 export class LoadingPage {

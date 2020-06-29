@@ -1,4 +1,4 @@
-<ion-content class=page_loading color="primary" >
+<ion-content>
 
     <div class="wrapper loading animation">
         <div class="candles">
@@ -48,16 +48,16 @@
         </h1> -->
       </ion-row>
       <ion-row justify-content-center padding>
-        <h1 text-center color="white">
+        <h1 text-center style="color:white;">
           {{ translateKeyForType("loading") | translate:{value: null} }}
         </h1>
-          <span text-center class=loading-subtitle>
+          <span text-center class="loading-subtitle">
           {{ translateKeyForType("loading_subtitle") | translate:{value: null} }}
         </span>
       </ion-row>
       <ion-row justify-content-center padding><ion-progress-bar [value]="progress" [buffer]="progress"></ion-progress-bar></ion-row>
       <ion-row justify-content-center padding>
-          <p class=very-small-font>A new loading Animation with every Version:<br> Candles Animation by Akhil Sai Ram (2018)</p>
+          <p class="very-small-font">A new loading Animation with every Version:<br> Candles Animation by Akhil Sai Ram (2018)</p>
         </ion-row>
     </ion-grid>
 

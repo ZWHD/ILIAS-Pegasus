@@ -2,15 +2,18 @@
     <ion-toolbar color="primary">
       <ion-buttons left>
       <ion-button icon-only (click)="dismiss()">
-        <ion-icon name ="close"></ion-icon>
+        <ion-icon name ="close" id="webr-icon"></ion-icon>
       </ion-button>
       </ion-buttons>
     </ion-toolbar>
 </ion-header>
-<ion-content color ="primary" class="page_leave_app_dialog">
+<ion-content color ="primary">
 
-  <ion-img class=enter-left-bounce src="assets/img/pony_exit.svg"></ion-img>
+
     <ion-grid color="white">
+      <ion-row justify-content-center padding>
+        <ion-img class="enter-left-bounce" src="assets/img/mascot.svg"></ion-img>
+      </ion-row>
       <ion-row justify-content-center padding>
       <h1 text-center color="white">
         <!-- You are leaving the ILIAS Pegasus App -->

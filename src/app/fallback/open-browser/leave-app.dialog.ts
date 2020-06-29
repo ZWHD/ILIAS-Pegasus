@@ -12,6 +12,8 @@ import {CssStyleService} from "../../services/theme/css-style.service";
 
 
 @Component({
+
+    selector: "leave-app-dialog-page",
     templateUrl: "leave-app.dialog.html"
 })
 export class LeaveAppDialog {

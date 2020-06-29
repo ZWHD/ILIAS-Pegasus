@@ -33,9 +33,9 @@
                         <ion-card color="transparent" >
                             <ion-card-header>
                                 <ion-card-subtitle *ngIf="newsPresenter[0].title">{{newsPresenter[0].title}}</ion-card-subtitle>
-                                <ion-card-subtitle *ngIf="newsPresenter[0].subtitle">{{newsPresenter[0].subtitle}}</ion-card-subtitle>
+                                <ion-card-subtitle *ngIf="(newsPresenter[0].content | toString) !== ''" [innerHtml]="newsPresenter[0].content" ></ion-card-subtitle>
                             </ion-card-header>
-                                <ion-card-content  *ngIf="(newsPresenter[0].content | toString) !== ''" [innerHtml]="newsPresenter[0].content"></ion-card-content>
+                                <ion-card-content  *ngIf="newsPresenter[0].subtitle">{{newsPresenter[0].subtitle}}</ion-card-content>
                                 <ion-card-subtitle class="ion-text-right ion-margin-end ion-margin-bottom">{{newsPresenter[0].updateDate | date:"dd. MMM HH:mm"}}</ion-card-subtitle>
                         </ion-card>
                     </ion-item>
@@ -66,7 +66,7 @@
             <ion-card-content>
                 <p class="info-text">{{ 'new-objects.no_new_items' | translate:[] }}</p>
         </ion-card-content>
-        </ion-card>
+        </ion-card> -->
     </ion-list>
             </ion-col>
         </ion-row>

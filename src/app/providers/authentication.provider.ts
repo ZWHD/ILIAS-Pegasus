@@ -43,8 +43,8 @@ export class AuthenticationProvider implements CanActivate {
      * to check wether a user is logged in
      */
     static isLoggedIn(): boolean {
-        return true
-        // return AuthenticationProvider.user !== undefined;
+        // return true
+        return AuthenticationProvider.user !== undefined;
     }
 
     /**

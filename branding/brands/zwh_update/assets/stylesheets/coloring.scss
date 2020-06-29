@@ -9,7 +9,7 @@
 :root {
 
     // Mark: Custom Variables
-    --custom-primary-gradient: linear-gradient(to top , var(--ion-color-primary), var(--ion-color-secondary));
+    --custom-primary-gradient: linear-gradient(to bottom , var(--ion-color-secondary), var(--ion-color-primary));
     --theme-from-plugin: "true";
 
     // font
@@ -100,20 +100,43 @@
     --ion-margin: 10px;
     --ion-padding: 10px;
 
+
+    //MARK: background-color;
+
+    ion-router-outlet{
+        .ion-page{
+            background-color: transparent;
+            // --ion-background-color: transparent;
+        }
+    }
+
+    ion-content{
+        background: var(--custom-primary-gradient)
+    }
+
+    //MARK: refresher
+    ion-refresher{
+        z-index: 0;
+       --ion-text-color: var(--ion-color-light);
+    }
+
     // MARK: root-tab-bar-color
     ion-tab-bar{
-        --background: var(--ion-color-transparent);
-        --color: var(--ion-color-transparent);
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 100%;
+        --background: var(--ion-color-primary);
+        --color: var(--ion-color-primary);
+        // position: absolute;
+        // bottom: 0;
+        // left: 0;
+        // width: 100%;
     }
 
     ion-tab-button{
         --color: var(--ion-color-light-shade);
         --color-selected: var(--ion-color-light);
     }
+
+
+
 
 
   }

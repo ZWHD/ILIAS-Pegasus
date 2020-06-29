@@ -80,6 +80,7 @@ export class NewsPage
         );
     }
 
+
     // ------------------- object-list duplicate ----------------------------
     private executeAction(action: ILIASObjectAction): void {
         const hash: number = action.instanceId();
