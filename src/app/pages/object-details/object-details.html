@@ -1,5 +1,5 @@
 <ion-header>
-    <ion-toolbar color="header-element">
+    <ion-toolbar color="primary">
         <ion-buttons slot="start">
             <ion-back-button text="" icon="arrow-back"></ion-back-button>
         </ion-buttons>
@@ -8,11 +8,11 @@
     </ion-toolbar>
 </ion-header>
 
-<ion-content padding class="page_object_details">
-    <div padding *ngIf="object.repoPath">
+<ion-content padding >
+    <div padding *ngIf="object.repoPath"å>
         <span *ngFor="let node of object.repoPath; let last = last">
-            <span>{{node}}</span>
-            <span *ngIf="! last"> » </span>
+            <span class="no-ionic-text">{{node}}</span>
+            <span class="no-ionic-text" *ngIf="! last"> » </span>
         </span>
     </div>
     <p text-wrap class="padding" *ngFor="let action of actions">

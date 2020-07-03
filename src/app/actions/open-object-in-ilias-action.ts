@@ -29,7 +29,9 @@ export class OpenObjectInILIASAction extends ILIASObjectAction {
         const ilasLink: string = await this.target.build();
 
         if(this.platform.is("android"))   this.openUserDialog(() => this.openBrowserAndroid(ilasLink));
-        else  if(this.platform.is("ios")) this.openUserDialog(() => this.openBrowserIos(ilasLink));
+        else if(this.platform.is("ios"))
+                this.openUserDialog(() => this.openBrowserIos(ilasLink));
+                // this.openBrowserIos(ilasLink);
         else throw new IllegalStateError("Unsupported platform, unable to open browser for unsupported platform.");
 
         return new ILIASObjectActionNoMessage();
@@ -45,16 +47,28 @@ export class OpenObjectInILIASAction extends ILIASObjectAction {
     }
 
     private openBrowserIos(link: string): void {
-        this.log.trace(() => "Open ios browser (internal).");
+        this.log.trace(() => "Open ios browser (i nternal).");
         this.log.trace(() => `Navigate to url: ${link}`);
         const options: InAppBrowserOptions = {
             location: "no",
             clearcache: "yes",
-            clearsessioncache: "yes"
+            clearsessioncache: "yes",
+            usewkwebview: "yes",
+            toolbarposition: "top",
+            presentationstyle: "fullscreen",
+            closebuttoncaption: "X",
+            closebuttoncolor: "#CC004D9F",
+            navigationbuttoncolor:"#CC004D9F",
+            hidespinner: "no",
+            toolbarcolor: "#00FFFFFF",
+            suppressesIncrementalRendering:"yes"
         };
 
         //encode url or the browser will be stuck in a loading screen of death as soon as it reads the | character. (20.02.18)
-        this.browser.create(encodeURI(link), "_blank", options);
+        const browserobj = this.browser.create(encodeURI(link), "_blank", options);
+        browserobj.on('loadstop').subscribe( event => {
+            browserobj.insertCSS({code: "html{ margin-top: 20px;} #ilTopNav button.navbar-toggle{ top:20px; left: 0px;} .ilTopFixed{ margin-top: 20px;} @media only screen and (max-width: 767px){.ilTopTitle{display: none !important}}"})
+        })
 
     }
 
@@ -64,7 +78,11 @@ export class OpenObjectInILIASAction extends ILIASObjectAction {
         const options: InAppBrowserOptions = <InAppBrowserOptions>{
             location: "yes",
             clearcache: "yes",
-            clearsessioncache: "yes"
+            clearsessioncache: "yes",
+            hideurlbar: "yes",
+            toolbar: "yes",
+            toolbarcolor: "#004D9F",
+            navigationbuttoncolor: "#ffffff"
         };
 
         this.browser.create(encodeURI(link), "_system", options);
