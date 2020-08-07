@@ -136,6 +136,8 @@ import {AppRoutingModule} from "./app-routing.module";
 import {OPEN_OBJECT_IN_ILIAS_ACTION_FACTORY, OpenObjectInILIASAction} from "./actions/open-object-in-ilias-action";
 import {WebView} from "@ionic-native/ionic-webview/ngx";
 import { OnboardingPage } from "./pages/onboarding/onboarding";
+import { CalendarRestImpl, CALENDAR_REST } from "./providers/ilias/calendar.rest";
+import { CalendarSynchronizationImpl, CALENDAR_SYNCHRONIZATION } from "./services/calendar/calendar.synchronization";
 
 @NgModule({
     declarations: [
@@ -207,6 +209,17 @@ import { OnboardingPage } from "./pages/onboarding/onboarding";
         {
             provide: NEWS_REST,
             useClass: NewsRestImpl
+        },
+
+       // from src/providers/ilias/calendar.rest
+
+        {
+            provide: CALENDAR_REST,
+            useClass: CalendarRestImpl
+        },
+        {
+            provide: CALENDAR_SYNCHRONIZATION,
+            useClass: CalendarSynchronizationImpl
         },
 
         // from src/config/ilias.rest-config

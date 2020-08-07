@@ -9,6 +9,7 @@ import {OPEN_OBJECT_IN_ILIAS_ACTION_FACTORY, OpenObjectInILIASAction} from "../.
 import {ILIASInstallation} from "../../config/ilias-config";
 import {ThemeProvider} from "../../providers/theme/theme.provider";
 import { Router } from "@angular/router";
+import { CalendarSynchronization, CALENDAR_SYNCHRONIZATION } from "src/app/services/calendar/calendar.synchronization";
 
 /**
  * Generated class for the DesktopPage page.
@@ -33,11 +34,13 @@ export class DesktopPage implements OnInit {
         @Inject(OPEN_OBJECT_IN_ILIAS_ACTION_FACTORY)
         private readonly openInIliasActionFactory: (title: string, urlBuilder: Builder<Promise<string>>) => OpenObjectInILIASAction,
         @Inject(LINK_BUILDER)
-        private readonly linkBuilder: LinkBuilder
+        private readonly linkBuilder: LinkBuilder,
+        @Inject(CALENDAR_SYNCHRONIZATION) private readonly calendarService: CalendarSynchronization
     ) {}
 
     ngOnInit(): void {
         // alert('On Init ran')
+        // this.calendarService.synchronize()
     }
 
     // count the number of loaded SVGs and set theme once all of them are loaded

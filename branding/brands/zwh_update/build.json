@@ -1,10 +1,10 @@
 {
   "ios": {
     "debug": {
-      "codeSignIdentity": "iPhone Developer",
-      "provisioningProfile": "201809_Pegasus",
-      "developmentTeam": "ZQ66BZ3DPL",
-      "packageType": "development"
+        "codeSignIdentity": "iPhone Development",
+        "provisioningProfile": "Lernwelt_Development",
+        "developmentTeam": "VB4S782267",
+        "packageType": "development"
     },
     "release": {
       "codeSignIdentity": "iPhone Distribution",
