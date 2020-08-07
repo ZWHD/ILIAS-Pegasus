@@ -30,8 +30,8 @@ export class OpenObjectInILIASAction extends ILIASObjectAction {
 
         if(this.platform.is("android"))   this.openUserDialog(() => this.openBrowserAndroid(ilasLink));
         else if(this.platform.is("ios"))
-                this.openUserDialog(() => this.openBrowserIos(ilasLink));
-                // this.openBrowserIos(ilasLink);
+                // this.openUserDialog(() => this.openBrowserIos(ilasLink));
+                this.openBrowserIos(ilasLink);
         else throw new IllegalStateError("Unsupported platform, unable to open browser for unsupported platform.");
 
         return new ILIASObjectActionNoMessage();
@@ -57,19 +57,16 @@ export class OpenObjectInILIASAction extends ILIASObjectAction {
             toolbarposition: "top",
             presentationstyle: "fullscreen",
             closebuttoncaption: "X",
-            closebuttoncolor: "#CC004D9F",
-            navigationbuttoncolor:"#CC004D9F",
+            closebuttoncolor: "#FFFFFF",
+            navigationbuttoncolor:"#FFFFFF",
             hidespinner: "no",
-            toolbarcolor: "#00FFFFFF",
+            toolbarcolor: "#004D9F",
+            toolbartranslucent: "no",
             suppressesIncrementalRendering:"yes"
         };
 
         //encode url or the browser will be stuck in a loading screen of death as soon as it reads the | character. (20.02.18)
         const browserobj = this.browser.create(encodeURI(link), "_blank", options);
-        browserobj.on('loadstop').subscribe( event => {
-            browserobj.insertCSS({code: "html{ margin-top: 20px;} #ilTopNav button.navbar-toggle{ top:20px; left: 0px;} .ilTopFixed{ margin-top: 20px;} @media only screen and (max-width: 767px){.ilTopTitle{display: none !important}}"})
-        })
-
     }
 
     private openBrowserAndroid(link: string): void {

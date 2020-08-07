@@ -39,7 +39,7 @@
                                 <ion-card-subtitle class="ion-text-right ion-margin-end ion-margin-bottom">{{newsPresenter[0].updateDate | date:"dd. MMM HH:mm"}}</ion-card-subtitle>
                         </ion-card>
                     </ion-item>
-                    <ion-card *ngIf="newsPresenters === undefined">
+                    <ion-card *ngIf="newsPresenters === undefined || newsPresenters.length === 0">
                         <ion-card-content>
                             <p class="info-text">{{ 'new-objects.no_new_items' | translate:[] }}</p>
                     </ion-card-content>

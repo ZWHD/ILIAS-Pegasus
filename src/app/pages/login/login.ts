@@ -12,6 +12,7 @@ import {ThemeProvider} from "../../providers/theme/theme.provider";
 import {LoadingPage} from "../../fallback/loading/loading.component";
 
 @Component({
+    selector: "page-login",
     templateUrl: "login.html"
 })
 export class LoginPage {

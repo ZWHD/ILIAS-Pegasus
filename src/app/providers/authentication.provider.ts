@@ -106,10 +106,27 @@ export class AuthenticationProvider implements CanActivate {
      */
     browserLogin(installation: ILIASInstallation): InAppBrowserObject {
         const url: string = `${installation.url}/login.php?target=ilias_app_oauth2&client_id=${installation.clientId}`;
-        const options: InAppBrowserOptions = {location: "no", clearsessioncache: "yes", clearcache: "yes"};
+        const options: InAppBrowserOptions = {
+            location: "no",
+            clearcache: "yes",
+            clearsessioncache: "yes",
+            usewkwebview: "yes",
+            toolbarposition: "top",
+            presentationstyle: "fullscreen",
+            closebuttoncaption: "X",
+            closebuttoncolor: "#FFFFFF",
+            navigationbuttoncolor:"#FFFFFF",
+            hidespinner: "no",
+            toolbarcolor: "#004D9F",
+            toolbartranslucent: "yes",
+            suppressesIncrementalRendering:"yes",
+            keyboardDisplayRequiresUserAction: "yes"
+        }
+
         const browser: InAppBrowserObject = this.browser.create(url, "_blank", options);
 
         browser.on("loadstop").subscribe(() => {
+            // alert("event fired")
             // Fetch data from inAppBrowser
             browser.executeScript({code: 'document.getElementById("data").value'}).then( (dataOut) => {
                 if (dataOut.length) {

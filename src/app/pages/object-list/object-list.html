@@ -7,7 +7,7 @@
         <ion-title>{{ pageTitle }}</ion-title>
         <ion-buttons slot="end" *ngIf="parent !== undefined">
             <ion-button *ngIf="!parent.isFavorite" (click)="executeSetFavoriteValueAction(parent, true);$event.stopPropagation();">
-                    <ion-icon slot="icon-only" src="./assets/icon/desktop_favorites_4.0.svg"></ion-icon>
+                    <ion-icon slot="icon-only" src="./assets/icon/favorites-outline.svg"></ion-icon>
             </ion-button>
             <ion-button *ngIf="parent.isFavorite === 1" (click)="executeSetFavoriteValueAction(parent, false);$event.stopPropagation();">
                     <ion-icon slot="icon-only" src="./assets/icon/favorites.svg"></ion-icon>
@@ -78,17 +78,17 @@
                                 </ion-col>
                                 <ion-col size="1" height="100%" justify-content-end>
                                     <ion-buttons height="100%" mode="ios">
-                                        <ion-button height="100%" mode="ios" color="primary"  *ngIf="!entry.object.isFavorite" (click)="executeSetFavoriteValueAction(entry.object, true);$event.stopPropagation();">
-                                            <ion-icon button="true" slot="icon-only" src="./assets/icon/favorites-outline.svg" color="primary"></ion-icon>
+                                        <ion-button height="100%" mode="ios"  *ngIf="!entry.object.isFavorite" (click)="executeSetFavoriteValueAction(entry.object, true);$event.stopPropagation();">
+                                            <ion-icon button="true" slot="icon-only" src="./assets/icon/favorites-outline.svg"></ion-icon>
                                         </ion-button>
-                                        <ion-button height="100%" mode="ios" color="primary" *ngIf="entry.object.isFavorite === 1" (click)="executeSetFavoriteValueAction(entry.object, false);$event.stopPropagation();">
-                                            <ion-icon slot="icon-only" src="./assets/icon/favorites.svg" color="primary"></ion-icon>
+                                        <ion-button height="100%" mode="ios" *ngIf="entry.object.isFavorite === 1" (click)="executeSetFavoriteValueAction(entry.object, false);$event.stopPropagation();">
+                                            <ion-icon slot="icon-only" src="./assets/icon/favorites.svg" ></ion-icon>
                                         </ion-button>
-                                        <ion-button height="100%" mode="ios" color="primary"  *ngIf="entry.object.isFavorite === 2" (click)="executeSetFavoriteValueAction(entry.object, false);$event.stopPropagation()">
-                                            <ion-icon slot="icon-only" name="md-download" color="primary"></ion-icon>
+                                        <ion-button height="100%" mode="ios"  *ngIf="entry.object.isFavorite === 2" (click)="executeSetFavoriteValueAction(entry.object, false);$event.stopPropagation()">
+                                            <ion-icon slot="icon-only" name="md-download" ></ion-icon>
                                         </ion-button>
-                                        <ion-button height="100%" mode="ios" color="primary"  (click)="showActions(entry.object);$event.stopPropagation();">
-                                            <ion-icon button="true" slot="icon-only" name="md-more" color="primary"></ion-icon>
+                                        <ion-button height="100%" mode="ios" (click)="showActions(entry.object);$event.stopPropagation();">
+                                            <ion-icon button="true" slot="icon-only" name="md-more"></ion-icon>
                                         </ion-button>
                                     </ion-buttons>
                                 </ion-col>

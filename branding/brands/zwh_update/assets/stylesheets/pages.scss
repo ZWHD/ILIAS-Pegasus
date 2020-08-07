@@ -223,6 +223,8 @@ page-settings {
 }
 
 
+
+
 // pages/info
 // --------------------------------------------------
 page-info{
@@ -282,9 +284,9 @@ page-info{
 
 // pages/login
 // --------------------------------------------------
-.page_login {
-    background-color: var(--ion-color-primary);
-    background-image: var(--custom-primary-gradient);
+page-login {
+    --ion-background-color: var(--custom-primary-gradient-reversed);
+
     line-height: 1.8em;
 
     #version-if-footer {
@@ -427,7 +429,7 @@ page-info{
     ion-slides {
         padding-top: var(--offset-top);
         background-color: var(--ion-color-primary);
-        background-image: var(--custom-primary-gradient);
+        background-image: var(--custom-primary-gradient-reversed);
     }
 
     ion-slide {
@@ -1209,5 +1211,93 @@ h1 {
     ion-spinner svg * {
         stroke: var(--ion-color-primary-contrast) !important;
     }
+
+}
+
+
+@media (prefers-color-scheme: dark) {
+
+    page-object-list{
+
+        --ion-background-color: transparent;
+
+
+        ion-button{
+            --background: transparent !important;
+        }
+
+        ion-card{
+            margin: 0px 10px 10px 10px !important;
+            border-color: var(--ion-item-border-color);
+            border-style:solid;
+            border-width: var(--ion-item-border-width);
+            border-radius: 2%;
+        }
+
+        .object-presenter-icon{
+            height:3rem;
+        }
+
+        .loading-text {
+            padding: 10px 0 10px 10px;
+        }
+
+        .offline-image{
+            width: 20%;
+            color: white;
+          }
+    }
+
+    page-settings {
+
+    --ion-background-color: var(--custom-primary-gradient);
+
+    ion-content{
+
+        ion-item {
+            --background: transparent;
+
+            ion-icon{
+                color:white;
+                background: transparent;
+                --ionicon-stroke-width: 16px;
+            }
+        }
+
+
+
+        ion-toggle{
+            --background-checked: var(--ion-color-secondary)
+
+        }
+
+
+        .center{
+            height:100%;
+            width:100%;
+            display:flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+
+        .general {
+            padding-top: 5px;
+        }
+
+        .item-toggle {
+            color: #999;
+        }
+
+        .item-md.item-input.ng-valid.input-has-value:not(.input-has-focus) .item-inner {
+            border-bottom: 1px solid #dedede;
+            box-shadow: none;
+        }
+
+        ion-label.activeUser {
+            font-weight: bold;
+        }
+    }
+}
 
 }
