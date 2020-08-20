@@ -10,6 +10,7 @@ import {SynchronizationService} from "../../services/synchronization.service";
 import {TranslateService} from "@ngx-translate/core";
 import {ThemeProvider} from "../../providers/theme/theme.provider";
 import {LoadingPage} from "../../fallback/loading/loading.component";
+import { CALENDAR_SYNCHRONIZATION, CalendarSynchronization } from "src/app/services/calendar/calendar.synchronization";
 
 @Component({
     selector: "page-login",
@@ -28,6 +29,7 @@ export class LoginPage {
     constructor(private readonly platform: Platform,
                 private readonly sync: SynchronizationService,
                 @Inject(CONFIG_PROVIDER) private readonly configProvider: ILIASConfigProvider,
+                @Inject(CALENDAR_SYNCHRONIZATION) private readonly calendarService: CalendarSynchronization,
                 private readonly event: Events,
                 private readonly appVersionPlugin: AppVersion,
                 private readonly auth: AuthenticationProvider,
@@ -37,6 +39,7 @@ export class LoginPage {
                 private readonly modal: ModalController,
                 private readonly navCtrl: NavController,
                 private readonly ngZone: NgZone
+
     ) {
       this.configProvider.loadConfig().then(config => {
           console.log(config)
@@ -81,6 +84,8 @@ export class LoginPage {
         await this.themeProvider.synchronizeAndSetCustomTheme();
         await this.checkAndLoadOfflineContent();
         await this.sync.resetOfflineSynchronization(true);
+        await this.calendarService.synchronize();
+
     }
 
     /**

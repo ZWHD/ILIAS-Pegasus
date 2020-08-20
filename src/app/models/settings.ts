@@ -21,6 +21,16 @@ export class Settings extends ActiveRecord {
     language: string = "de";
 
     /**
+     * If true, alway sync calendar entries when starting the app
+     */
+    syncCalendar: boolean = false;
+
+    /**
+     * If false, does not prompt user for permission again
+     */
+    askSyncCalendar: boolean = true;
+
+    /**
      * Max. allowed size for automatic downloads (mega bytes)
      */
     downloadSize: number = 10;
@@ -59,6 +69,8 @@ export class Settings extends ActiveRecord {
         super(id, new SQLiteConnector("settings", [
             "userId",
             "language",
+            "syncCalendar",
+            "askSyncCalendar",
             "downloadSize",
             "quotaSize",
             "downloadOnStart",

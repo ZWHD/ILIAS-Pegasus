@@ -57,6 +57,7 @@
     "settings": {
         "title": "Einstellungen",
         "language": "Sprache",
+        "syncCalendar": "Kurskalender synchronisieren",
         "downloadSize": "Max. Dateigrösse für Download (MB)",
         "downloadWLAN": "Nur im WLAN laden",
         "quotaSize": "Verfügbarer Speicher (MB)",
@@ -285,5 +286,20 @@
         "datasecurity3": "ILIAS Pegasus ist ein Open Source Projekt. Wenn Du Dich selbst überzeugen möchtest, was die App tut, dann kannst Du hier den Code einsehen:",
         "next":"Weiter",
         "start": "Los geht's"
+      },
+      "calendar": {
+          "alert-header":"Kalender",
+          "alert-message":"Möchtest Du deinen Kurskalender mit Deinem Gerätekalender synchronisieren?",
+          "alert-always":"ja, immer",
+          "alert-once":"einmalig",
+          "alert-never":"niemals",
+          "cal_crs_timing_start":"Beginnt",
+          "cal_crs_timing_end":"Endet",
+          "crs_cal_activation_start":"Kurs ist online Verfügbar",
+          "crs_cal_activation_end":"Kurs nicht mehr online Verfügbar",
+          "crs_cal_reg_start":"Beginn des Registrierungszeitraumes",
+          "crs_cal_reg_end":"Ende des Registrierunszeitraumes",
+          "crs_cal_start":"Kursbeginn",
+          "crs_cal_end":"Kursende"
       }
     }

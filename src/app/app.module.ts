@@ -138,6 +138,7 @@ import {WebView} from "@ionic-native/ionic-webview/ngx";
 import { OnboardingPage } from "./pages/onboarding/onboarding";
 import { CalendarRestImpl, CALENDAR_REST } from "./providers/ilias/calendar.rest";
 import { CalendarSynchronizationImpl, CALENDAR_SYNCHRONIZATION } from "./services/calendar/calendar.synchronization";
+import { Calendar } from "@ionic-native/calendar/ngx";
 
 @NgModule({
     declarations: [
@@ -221,6 +222,7 @@ import { CalendarSynchronizationImpl, CALENDAR_SYNCHRONIZATION } from "./service
             provide: CALENDAR_SYNCHRONIZATION,
             useClass: CalendarSynchronizationImpl
         },
+        Calendar,
 
         // from src/config/ilias.rest-config
         {

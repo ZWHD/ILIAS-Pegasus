@@ -25,6 +25,7 @@ import {Logging} from "../logging/logging.service";
 /** misc */
 import {Connection, getConnection, QueryRunner} from "typeorm/browser";
 import {PEGASUS_CONNECTION_NAME} from "../../config/typeORM-config";
+import { SettingsSyncCalendar } from "src/app/migrations/V__11-settings_sync_calendar";
 
 /**
  * DB Migration with TypeORM.
@@ -147,6 +148,7 @@ export class SimpleMigrationSupplier implements MigrationSupplier {
       new SettingsThemeColor(),
       new AddThemeTimestamp(),
       new CreateLearningModulesSchema(),
+      new SettingsSyncCalendar()
     ];
   }
 }

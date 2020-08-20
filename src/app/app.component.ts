@@ -27,6 +27,7 @@ import {ObjectListPage} from "./pages/object-list/object-list";
 import {ThemeProvider} from "./providers/theme/theme.provider";
 /** misc */
 import getMessage = Logging.getMessage;
+import { CALENDAR_SYNCHRONIZATION, CalendarSynchronization } from "./services/calendar/calendar.synchronization";
 
 @Component({
     selector: "app-root",
@@ -65,6 +66,7 @@ export class AppComponent {
         private readonly ngZone: NgZone,
         private readonly themeProvider: ThemeProvider,
         @Inject(DB_MIGRATION) private readonly dbMigration: DBMigration,
+        @Inject(CALENDAR_SYNCHRONIZATION) private readonly calendarService: CalendarSynchronization,
         sqlite: SQLite
     ) {
         // Set members on classes which are not injectable
@@ -100,6 +102,7 @@ export class AppComponent {
             await this.sync.resetOfflineSynchronization(true);
             await this.themeProvider.loadResources();
             await this.router.navigate(['/tabs']);
+            await this.calendarService.synchronize();
             // await this.navCtrl.navigateRoot("tabs");
         } else {
             await this.presentOnboardingModal();
