@@ -19,6 +19,9 @@ import {CONFIG_PROVIDER, ConfigProvider, ILIASConfig, ILIASInstallation} from ".
 import {DataProvider} from "../../providers/data-provider.provider";
 import {TranslateService} from "@ngx-translate/core";
 import {AuthenticationProvider} from "../../providers/authentication.provider";
+import { FromEventTarget } from "rxjs/internal/observable/fromEvent";
+import { CALENDAR_SYNCHRONIZATION, CalendarSynchronization } from "src/app/services/calendar/calendar.synchronization";
+
 
 @Component({
     selector: "page-settings",
@@ -52,6 +55,7 @@ export class SettingsPage {
                 public dataProvider: DataProvider,
                 public fileService: FileService,
                 private readonly config: Config,
+                @Inject(CALENDAR_SYNCHRONIZATION) private readonly calendarService: CalendarSynchronization,
                 private readonly ngZone: NgZone) {
     }
 
@@ -127,6 +131,14 @@ export class SettingsPage {
                 await this.settings.save();
             } catch (e) {
                 console.log(`ERR ${e.message}`);
+            }
+
+            if(this.settings.syncCalendar){
+                this.calendarService.synchronize()
+                this.settings.askSyncCalendar = false
+                this.settings.save()
+            }else{
+                this.calendarService.remove()
             }
 
             this.log.info(() => "Settings saved successfully.");

@@ -139,6 +139,7 @@ import { OnboardingPage } from "./pages/onboarding/onboarding";
 import { CalendarRestImpl, CALENDAR_REST } from "./providers/ilias/calendar.rest";
 import { CalendarSynchronizationImpl, CALENDAR_SYNCHRONIZATION } from "./services/calendar/calendar.synchronization";
 import { Calendar } from "@ionic-native/calendar/ngx";
+import { OpenNativeSettings } from "@ionic-native/open-native-settings/ngx";
 
 @NgModule({
     declarations: [
@@ -223,6 +224,7 @@ import { Calendar } from "@ionic-native/calendar/ngx";
             useClass: CalendarSynchronizationImpl
         },
         Calendar,
+        OpenNativeSettings,
 
         // from src/config/ilias.rest-config
         {

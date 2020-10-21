@@ -289,7 +289,7 @@
       },
       "calendar": {
           "alert-header":"Kalender",
-          "alert-message":"Möchtest Du deinen Kurskalender mit Deinem Gerätekalender synchronisieren?",
+          "alert-message":"Möchtest Du Deinen Kurskalender mit Deinem Gerätekalender synchronisieren?",
           "alert-always":"ja, immer",
           "alert-once":"einmalig",
           "alert-never":"niemals",
@@ -300,6 +300,14 @@
           "crs_cal_reg_start":"Beginn des Registrierungszeitraumes",
           "crs_cal_reg_end":"Ende des Registrierunszeitraumes",
           "crs_cal_start":"Kursbeginn",
-          "crs_cal_end":"Kursende"
+          "crs_cal_end":"Kursende",
+          "grant-access-header":"Synch Fehlgeschlagen",
+          "grant-access-message":"Um Deinen Kalender synchronisieren zu können benötigen wir Deine Erlaubnis auf Deinen Kalendar zugreifen zu dürfen. Hier kannst Du Deine Einstellungen ändern.",
+          "grant-access-ok":"OK",
+          "remove-failed-header":"Keine Zugriffsrechte",
+          "native-settings":"Ändern",
+          "success":"Kurskalender auf dem aktuellsten Stand",
+          "failure":"Kurskalender konnte nicht synchronisiert werden",
+          "deleted":"Kurskalender wurde entfernt"
       }
     }

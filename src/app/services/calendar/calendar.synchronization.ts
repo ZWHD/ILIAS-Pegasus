@@ -1,5 +1,5 @@
 import { CalendarRest, CALENDAR_REST, CalendarEntry, IliasCalendar } from "src/app/providers/ilias/calendar.rest";
-import { AlertController, Platform } from "@ionic/angular";
+import { AlertController, Platform, ToastController } from "@ionic/angular";
 import { Inject, InjectionToken, Injectable } from "@angular/core";
 import { Calendar, CalendarOptions } from '@ionic-native/calendar/ngx';
 import { Logger } from "../logging/logging.api";
@@ -13,6 +13,8 @@ import { inject } from "@angular/core/testing";
 import { calcPossibleSecurityContexts } from "@angular/compiler/src/template_parser/binding_parser";
 import { TranslateService } from "@ngx-translate/core";
 import { Settings } from "src/app/models/settings";
+import { OpenNativeSettings } from '@ionic-native/open-native-settings/ngx';
+
 
 /**
  * @author gmangelsdorf <gmangelsdorf@zwh.de>
@@ -26,7 +28,9 @@ export interface CalendarSynchronization {
      *
      * @returns {Promise<void>}
      */
-    synchronize(): Promise<void>;
+    hasPermission(): Promise<boolean>
+    synchronize(): Promise<void>
+    remove(): Promise<void>
 }
 
 
@@ -39,10 +43,9 @@ export const CALENDAR_SYNCHRONIZATION: InjectionToken<CalendarSynchronization> =
 
 export class CalendarSynchronizationImpl implements CalendarSynchronization {
 
-    private readonly log: Logger = Logging.getLogger(ILIASTokenManager.name)
+    private readonly log: Logger = Logging.getLogger("Calendar Synchronization Service")
     private clientTitle: string
     private settings: Settings
-
 
     constructor(
         private readonly platform: Platform,
@@ -50,11 +53,27 @@ export class CalendarSynchronizationImpl implements CalendarSynchronization {
         private readonly translate: TranslateService,
         private alertCtr: AlertController,
         @Inject(CALENDAR_REST) private readonly rest: CalendarRest,
-        private nativeCalendar: Calendar
+        private nativeCalendar: Calendar,
+        private nativeSettings: OpenNativeSettings,
+        private toast: ToastController
     ) {
     }
 
+
+    async hasPermission(): Promise<boolean> {
+        const hasRead = await this.nativeCalendar.hasReadPermission()
+        const hasReadWrite = await this.nativeCalendar.hasReadWritePermission()
+        const hasWrite = await this.nativeCalendar.hasWritePermission()
+
+       this.log.debug(() => "Has read permission: " +  hasRead)
+       this.log.debug(() => "Has readWrite permission: " +  hasReadWrite)
+       this.log.debug(() => "Has hasWrite permission: " +  hasWrite)
+
+      return this.nativeCalendar.hasWritePermission()
+    }
+
     async synchronize(): Promise<void> {
+
         this.settings = await Settings.findByUserId(AuthenticationProvider.getUser().id)
 
         if (this.settings.syncCalendar == true) {
@@ -75,27 +94,31 @@ export class CalendarSynchronizationImpl implements CalendarSynchronization {
                     handler: async (): Promise<void> => {
                         this.alertCtr.dismiss();
                         this.setPrefrence(false,false)
+                        this.settings.save()
                     }
                 },
                 {
                     text: this.translate.instant('calendar.alert-once'),
                     handler: (): void => {
-                        this.executeSynchronization();
+                        this.executeSynchronization().then(() => {
+                            this.setPrefrence(false,true)
+                        });
                         this.alertCtr.dismiss();
-                        this.setPrefrence(false,true)
                     }
                 },
                 {
                     text: this.translate.instant('calendar.alert-always'),
                     handler: (): void => {
-                        this.executeSynchronization();
+                        this.executeSynchronization().then( async () => {
+                            this.setPrefrence(true,false)
+                        });
                         this.alertCtr.dismiss();
-                        this.setPrefrence(true,false)
                     }
                 }]
 
         }).then(alert => alert.present())
     }
+
 
     async setPrefrence(sync: boolean, ask: boolean) {
         this.settings.syncCalendar = sync
@@ -103,8 +126,93 @@ export class CalendarSynchronizationImpl implements CalendarSynchronization {
         this.settings.save()
     }
 
+    /**
+     * Check device permission to access calendar
+     */
+    async alertPermission(): Promise<boolean> {
+        const hasPermission = await this.hasPermission()
+        if (!hasPermission) {
+            const alert = await this.alertCtr.create({
+                header: this.translate.instant('calendar.grant-access-header'),
+                message: this.translate.instant('calendar.grant-access-message'),
+                buttons: [
+                    {
+                        text: this.translate.instant('calendar.native-settings'),
+                        handler: (): void => {
+                            this.alertCtr.dismiss();
+                            this.nativeSettings.open("application_details")
+                        }
+                    },
+                    {
+                        text: this.translate.instant('calendar.grant-access-ok'),
+                        handler: (): void => {
+                            this.alertCtr.dismiss();
+                        }
+                    }
+                ]
+            })
+
+           await alert.present()
+           this.log.debug( () => "No access rights granted" )
+           return Promise.resolve(false)
+        }
+        this.log.debug( () => "Access rights granted" )
+
+     return  Promise.resolve(true)
+    }
+
+    async alertPermissionOnRemoval(e: any) {
+        const alert = await this.alertCtr.create({
+            header: this.translate.instant('calendar.remove-failed-header'),
+            message: e,
+            buttons: [
+                {
+                    text: this.translate.instant('calendar.native-settings'),
+                    handler: (): void => {
+                        this.alertCtr.dismiss();
+                        this.nativeSettings.open("application_details")
+                    }
+                },
+                {
+                    text: this.translate.instant('calendar.grant-access-ok'),
+                    handler: (): void => {
+                        this.alertCtr.dismiss();
+                    }
+                }
+            ]
+        })
+
+       await alert.present()
+    }
+
+    //remove the calendar
+    async remove():Promise<void>{
+
+        //TODO Lazy load this
+        if (this.clientTitle == undefined) {
+            let installation = await this.config.loadInstallation(AuthenticationProvider.getUser().installationId)
+            this.clientTitle = installation.title
+        }
+
+       try {
+        if (await this.hasPermission() && await this.calendarsInstalled()){
+            await this.deleteCalendars()
+            this.showToast(this.translate.instant("calendar.deleted"))
+        }
+       }
+       catch (e) {
+            this.alertPermissionOnRemoval(e)
+       }
+
+    }
+
+
+
+        //get events remotely,
+        //delete ilias Calendars and add again
 
     async executeSynchronization(): Promise<any> {
+
 
         /**
          * get client name
@@ -114,12 +222,16 @@ export class CalendarSynchronizationImpl implements CalendarSynchronization {
             this.clientTitle = installation.title
         }
 
-        //get events remotely,
-        //delete ilias Calendars and add again
-        const iliasCalendars: IliasCalendar[] = await this.rest.getCalendarEntries()
-        await this.deleteCalendars()
-        await this.createCalendars(iliasCalendars)
-        await this.createEvents(iliasCalendars)
+        try {
+            const iliasCalendars: IliasCalendar[] = await this.rest.getCalendarEntries()
+            await this.deleteCalendars()
+            await this.createCalendars(iliasCalendars)
+            await this.createEvents(iliasCalendars)
+        } catch(e) {
+            this.log.debug(()=> e.message)
+        }
+
+        this.alertPermission().then(granted => granted ? this.showToast(this.translate.instant('calendar.success')) : this.showToast(this.translate.instant('calendar.failure')))
     }
 
 
@@ -129,6 +241,20 @@ export class CalendarSynchronizationImpl implements CalendarSynchronization {
     async calendarExists(name: string): Promise<boolean> {
         const localCalendars: [{ id: string, name: string }] = await this.nativeCalendar.listCalendars()
         return localCalendars.findIndex(el => el.name == `${name} (${this.clientTitle})`) == -1 ? false : true
+    }
+
+    /**
+     * Checks if there are any course calendars installed on the device
+     */
+    async calendarsInstalled(): Promise<boolean>{
+        const localCalendars: [{ id: string, name: string }] = await this.nativeCalendar.listCalendars()
+        const myCalendars = localCalendars.filter(x => {
+            const included = x.name.includes(this.clientTitle)
+            this.log.debug(()=> `${this.clientTitle} is included in ${x.name}: ${included} `  )
+            return included
+        })
+        this.log.debug(() => `has Calendars: ${myCalendars.length > 0}, length: ${myCalendars.length}`)
+        return myCalendars.length > 0
     }
 
     /**
@@ -204,12 +330,11 @@ export class CalendarSynchronizationImpl implements CalendarSynchronization {
 
 
 
-
-
-
-
-    async setSettings(sync: boolean) {
-
+    async showToast(msg: string) {
+        await this.toast.create({
+            message: msg,
+            duration: 3000
+        }).then((it: HTMLIonToastElement) => it.present());
     }
 
 }
