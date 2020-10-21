@@ -1,8 +1,12 @@
 /* angular */
 import {Component} from "@angular/core";
-import {NavController} from "@ionic/angular";
+import { Cordova } from "@ionic-native/core";
+import {NavController, Platform} from "@ionic/angular";
+import { Logging } from "src/app/services/logging/logging.service";
 /* misc */
 import {AuthenticationProvider} from "../../providers/authentication.provider";
+import {InAppBrowser, InAppBrowserObject, InAppBrowserOptions} from "@ionic-native/in-app-browser/ngx";
+
 
 /**
  * Generated class for the MenuPage page.
@@ -16,7 +20,7 @@ import {AuthenticationProvider} from "../../providers/authentication.provider";
 })
 export class MenuPage {
 
-    constructor(public navCtrl: NavController, private readonly auth: AuthenticationProvider) {
+    constructor(public navCtrl: NavController, private browser: InAppBrowser, private readonly auth: AuthenticationProvider, private readonly platform: Platform) {
     }
 
     async navigateTo(url: string): Promise<void> {
@@ -28,6 +32,25 @@ export class MenuPage {
     }
 
     async openPrivacyPolicy(url: string): Promise<void> {
-        window.open(url , "_system");
+
+        const options: InAppBrowserOptions = {
+            location: "no",
+            clearcache: "yes",
+            clearsessioncache: "yes",
+            usewkwebview: "yes",
+            toolbarposition: "top",
+            presentationstyle: "fullscreen",
+            closebuttoncaption: "X",
+            closebuttoncolor: "#FFFFFF",
+            navigationbuttoncolor:"#FFFFFF",
+            hidespinner: "no",
+            toolbarcolor: "#004D9F",
+            toolbartranslucent: "yes",
+            suppressesIncrementalRendering:"yes",
+            keyboardDisplayRequiresUserAction: "yes"
+        }
+
+        this.browser.create(url, this.platform.is("ios") ? "_blank" : "_system", options);
+
     }
 }
