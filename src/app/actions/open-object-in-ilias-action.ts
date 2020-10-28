@@ -49,6 +49,7 @@ export class OpenObjectInILIASAction extends ILIASObjectAction {
     private openBrowserIos(link: string): void {
         this.log.trace(() => "Open ios browser (i nternal).");
         this.log.trace(() => `Navigate to url: ${link}`);
+        var navColor =  window.getComputedStyle(document.documentElement).getPropertyValue('--in-app-browser-toolbar-background-color').trim();
         const options: InAppBrowserOptions = {
             location: "no",
             clearcache: "yes",
@@ -60,10 +61,13 @@ export class OpenObjectInILIASAction extends ILIASObjectAction {
             closebuttoncolor: "#FFFFFF",
             navigationbuttoncolor:"#FFFFFF",
             hidespinner: "no",
-            toolbarcolor: "#004D9F",
+            toolbarcolor: navColor,
             toolbartranslucent: "no",
             suppressesIncrementalRendering:"yes"
         };
+
+        this.log.debug(()=> options.toolbarcolor)
+
 
         //encode url or the browser will be stuck in a loading screen of death as soon as it reads the | character. (20.02.18)
         const browserobj = this.browser.create(encodeURI(link), "_blank", options);

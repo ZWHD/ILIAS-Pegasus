@@ -9,6 +9,7 @@ import {User} from "../models/user";
 import {Log} from "../services/log.service";
 import {ILIASInstallation} from "../config/ilias-config";
 import {InAppBrowser, InAppBrowserObject, InAppBrowserOptions} from "@ionic-native/in-app-browser/ngx";
+import { Logging } from "../services/logging/logging.service";
 
 interface UserLoginData {
     iliasUserId: number,
@@ -106,7 +107,8 @@ export class AuthenticationProvider implements CanActivate {
      */
     browserLogin(installation: ILIASInstallation): InAppBrowserObject {
         const url: string = `${installation.url}/login.php?target=ilias_app_oauth2&client_id=${installation.clientId}`;
-        const options: InAppBrowserOptions = {
+        var navColor =  window.getComputedStyle(document.documentElement).getPropertyValue('--in-app-browser-toolbar-background-color').trim();
+        var options: InAppBrowserOptions = {
             location: "no",
             clearcache: "yes",
             clearsessioncache: "yes",
@@ -117,36 +119,37 @@ export class AuthenticationProvider implements CanActivate {
             closebuttoncolor: "#FFFFFF",
             navigationbuttoncolor:"#FFFFFF",
             hidespinner: "no",
-            toolbarcolor: "#004D9F",
-            toolbartranslucent: "yes",
+            toolbarcolor: navColor,
+            toolbartranslucent: "no",
             suppressesIncrementalRendering:"yes",
             keyboardDisplayRequiresUserAction: "yes"
         }
 
-        const browser: InAppBrowserObject = this.browser.create(url, "_blank", options);
+        let browser: InAppBrowserObject;
 
-        browser.on("loadstop").subscribe(() => {
-            // alert("event fired")
-            // Fetch data from inAppBrowser
-            browser.executeScript({code: 'document.getElementById("data").value'}).then( (dataOut) => {
-                if (dataOut.length) {
-                    dataOut = dataOut[0].split("|||");
-                    const loginData: UserLoginData = {
-                        iliasUserId: dataOut[0],
-                        iliasInstallationId: installation.id,
-                        iliasLogin: dataOut[1],
-                        accessToken: dataOut[2],
-                        refreshToken: dataOut[3]
-                    };
-                    this.login(loginData, false).then(() => {
-                        browser.close();
-                    }, (err) => {
-                        console.error(this, err);
-                        browser.close();
-                    });
-                }
+            browser = this.browser.create(url, "_blank", options);
+            browser.on("loadstop").subscribe(() => {
+                // alert("event fired")
+                // Fetch data from inAppBrowser
+                browser.executeScript({code: 'document.getElementById("data").value'}).then( (dataOut) => {
+                    if (dataOut.length) {
+                        dataOut = dataOut[0].split("|||");
+                        const loginData: UserLoginData = {
+                            iliasUserId: dataOut[0],
+                            iliasInstallationId: installation.id,
+                            iliasLogin: dataOut[1],
+                            accessToken: dataOut[2],
+                            refreshToken: dataOut[3]
+                        };
+                        this.login(loginData, false).then(() => {
+                            browser.close();
+                        }, (err) => {
+                            console.error(this, err);
+                            browser.close();
+                        });
+                    }
+                });
             });
-        });
 
         return browser;
     }

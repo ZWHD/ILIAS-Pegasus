@@ -8,10 +8,6 @@
 
 :root {
 
-    // Mark: Custom Variables
-    --custom-primary-gradient: linear-gradient(to bottom , var(--ion-color-secondary), var(--ion-color-primary));
-    --custom-primary-gradient-reversed: linear-gradient(to bottom , var(--ion-color-primary), var(--ion-color-secondary));
-
     --theme-from-plugin: "false";
 
     // font
@@ -102,8 +98,13 @@
     --ion-margin: 10px;
     --ion-padding: 10px;
 
+    // Mark: Custom Variables
+    --custom-primary-gradient: linear-gradient(to bottom , var(--ion-color-secondary), var(--ion-color-primary));
+    --custom-primary-gradient-reversed: linear-gradient(to bottom , var(--ion-color-primary), var(--ion-color-secondary));
 
     //MARK: background-color;
+    --in-app-browser-toolbar-background-color: var(--ion-color-primary);
+
 
     ion-router-outlet{
         .ion-page{
@@ -147,6 +148,7 @@
 
   @media (prefers-color-scheme: dark) {
     :root {
+
 
       --ion-border-color: var(--ion-color-dark-shade);
       --ion-background-color: var(--ion-color-dark);
@@ -198,8 +200,10 @@
       --ion-color-light-grey-tint: #cacaca;
 
 
+      --in-app-browser-toolbar-background-color: var(--ion-color-primary);
       --ion-overlay-background-color: var(--ion-color-secondary);
     //   --ion-text-color: white;
+
 
         ion-tab-button{
             --color: var(--ion-color-light-grey-shade);

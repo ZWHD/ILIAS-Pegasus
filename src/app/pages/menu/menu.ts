@@ -32,7 +32,7 @@ export class MenuPage {
     }
 
     async openPrivacyPolicy(url: string): Promise<void> {
-
+        var navColor =  window.getComputedStyle(document.documentElement).getPropertyValue('--in-app-browser-toolbar-background-color').trim();
         const options: InAppBrowserOptions = {
             location: "no",
             clearcache: "yes",
@@ -44,8 +44,8 @@ export class MenuPage {
             closebuttoncolor: "#FFFFFF",
             navigationbuttoncolor:"#FFFFFF",
             hidespinner: "no",
-            toolbarcolor: "#004D9F",
-            toolbartranslucent: "yes",
+            toolbarcolor: navColor,
+            toolbartranslucent: "no",
             suppressesIncrementalRendering:"yes",
             keyboardDisplayRequiresUserAction: "yes"
         }

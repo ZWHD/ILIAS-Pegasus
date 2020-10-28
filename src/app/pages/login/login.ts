@@ -42,7 +42,6 @@ export class LoginPage {
 
     ) {
       this.configProvider.loadConfig().then(config => {
-          console.log(config)
           this.installations.push(...config.installations);
           this.installationId = this.installations[0].id;
       });
