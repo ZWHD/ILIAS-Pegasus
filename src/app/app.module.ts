@@ -415,6 +415,7 @@ import { OpenNativeSettings } from "@ionic-native/open-native-settings/ngx";
         AccordionMapper,
         VisitJournalMapper,
 
+
         {
             provide: RESOURCE_TRANSFER,
             useClass: HttpResourceTransfer

@@ -1,36 +1,43 @@
 <ion-content no-padding fullscreen="true">
 
-    <ion-grid padding-top>
-        <ion-row justify-content-center class=login-top-logo-row>
-                <img src="assets/img/login.svg" alt="" class="login-top-image"/>
+    <ion-grid class="ion-no-padding">
+        <ion-row class="ion-justify-content-center  login-top-logo-row ion-padding-top ion-margin-top">
+                <img src="assets/img/login.svg" alt="" class="ion-text-justify  login-top-img"/>
         </ion-row>
 
-        <ion-row padding-top justify-content-center align-items-center	 class=login-welcome-row>
-                <h1 class=huge-login-header text-center>{{ 'login.hello' | translate:[]}}</h1>
-        </ion-row>
-        <ion-row padding justify-content-center align-items-end	>
-            <ion-item color="transparent">
+
+
+        <ion-row class="login-main ion-justify-content-center ion-align-items-center" >
+            <ion-col size="12" class="ion-no-padding ion-no-margin">
+            <ion-row >
+                <ion-col size="12" class="ion-justify-content-center ion-text-center ion-padding-left ion-padding-right">
+                    <h1 class="login-header">{{ 'login.hello' | translate:[]}}</h1>
+                </ion-col>
+            </ion-row>
+            <ion-row class="ion-justify-content-center">
+             <ion-col size="auto" class="ion-justify-content-center ion-no-padding ion-no-margin">
                 <ion-label position="stacked" text-center></ion-label>
                 <ion-select [(ngModel)]="installationId" interface="alert" text-center placeholder="{{ 'login.instructions' | translate:[]}}" okText="{{ 'login.ok' | translate:[]}}" cancelText="{{ 'login.dismiss' | translate:[]}}">
                     <ion-select-option *ngFor="let installation of installations" [value]="installation.id">{{ installation.title }}</ion-select-option>
                 </ion-select>
-            </ion-item>
+             </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col size="12" class="ion-text-center ion-no-padding ion-no-margin">
+                     <ion-button color="light" fill="outline" shape="round"  (click)="login()" [disabled]="!installationId">{{ 'login.login' | translate:[] }}</ion-button>
+                </ion-col>
+            </ion-row>
+        </ion-col>
         </ion-row>
 
-        <ion-row justify-content-center>
-            <ion-button color="light" fill="outline" shape="round"  (click)="login()" [disabled]="!installationId">{{ 'login.login' | translate:[] }}</ion-button>
+        <ion-row class="ion-justify-content-center ion-align-items-center login-foerder-row">
+            <img src="assets/img/iq_foerderleiste.png" class="logo">
         </ion-row>
 
-        <ion-row padding justify-content-center align-items-end class=login-version-row>
-            <ion-item color="transparent" text-center no-lines>
+        <ion-row class="ion-justify-content-center ion-align-items-center login-version-row">
                 Version {{appVersionStr | async}}
-            </ion-item>
-            <br>
         </ion-row>
 
-        <ion-row justify-content-center class=styled-bottom-row>
-            <img src="assets/img/login_bottom.svg" alt="" class="login-bottom-image"/>
-        </ion-row>
     </ion-grid>
 
 </ion-content>

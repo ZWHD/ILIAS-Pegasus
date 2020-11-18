@@ -1,6 +1,6 @@
 /** angular */
 import {InjectionToken} from "@angular/core";
-import {ModalController, Platform} from "@ionic/angular";
+import {LoadingController, ModalController, Platform} from "@ionic/angular";
 /** ionic-native */
 import {InAppBrowser, InAppBrowserOptions} from "@ionic-native/in-app-browser/ngx";
 /** logging */
@@ -11,6 +11,7 @@ import {ILIASObjectAction, ILIASObjectActionAlert, ILIASObjectActionResult, ILIA
 import {Builder} from "../services/builder.base";
 import {IllegalStateError} from "../error/errors";
 import {LeaveAppAction, LeaveAppDialog, LeaveAppDialogNavParams} from "../fallback/open-browser/leave-app.dialog";
+import { ɵangular_packages_platform_browser_platform_browser_k } from "@angular/platform-browser";
 
 
 export class OpenObjectInILIASAction extends ILIASObjectAction {
@@ -22,7 +23,7 @@ export class OpenObjectInILIASAction extends ILIASObjectAction {
         private readonly target: Builder<Promise<string>>,
         private readonly browser: InAppBrowser,
         private readonly platform: Platform,
-        private readonly modal: ModalController
+        private readonly modal: ModalController,
     ) { super() }
 
     async execute(): Promise<ILIASObjectActionResult> {
@@ -65,8 +66,6 @@ export class OpenObjectInILIASAction extends ILIASObjectAction {
             toolbartranslucent: "no",
             suppressesIncrementalRendering:"yes"
         };
-
-        this.log.debug(()=> options.toolbarcolor)
 
 
         //encode url or the browser will be stuck in a loading screen of death as soon as it reads the | character. (20.02.18)

@@ -1,8 +1,8 @@
 {
-    "ilias_installation_ids": [1],
+    "ilias_installation_ids": [7],
     "projectConfig": {
       "id": "de.zwh.iqlernwelt",
-      "name": "Lernwelt",
+      "name": "IQ Netzwerk",
       "description": "Download, sync and store ILIAS-files on your device"
     }
   }

@@ -25,6 +25,13 @@
     "yesterday": "Yesterday",
     "repository": "Repository",
     "datasecurity": {"title": "Privacy policy"},
+    "tabs":{
+        "home": "Home",
+        "courses": "Courses",
+        "news": "News",
+        "favorites": "Favorites",
+        "menu":"menu"
+    },
     "object-list": {
         "title" : "My Courses & Groups",
         "content" : "Content",

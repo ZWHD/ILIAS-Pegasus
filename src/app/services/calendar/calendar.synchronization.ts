@@ -269,7 +269,7 @@ export class CalendarSynchronizationImpl implements CalendarSynchronization {
         if (id !== null)
             cal['id'] = +id
         else
-            this.log.warn(() => "Created Calendar '" + cal.calendar_title + "' with id: " + id)
+            this.log.debug(() => "Created Calendar '" + cal.calendar_title + "' with id: " + id)
         return Promise.resolve()
     }
 

@@ -25,6 +25,13 @@
     "yesterday": "Gestern",
     "repository": "Magazin",
     "datasecurity": {"title": "Datenschutzerklärung"},
+    "tabs":{
+        "home": "Start",
+        "courses": "Inhalte",
+        "news": "Neuigkeiten",
+        "favorites": "Favoriten",
+        "menu":"Menü"
+    },
     "object-list": {
         "title" : "Meine Kurse & Gruppen",
         "content" : "Inhalt",

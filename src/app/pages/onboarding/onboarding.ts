@@ -15,7 +15,7 @@ export class OnboardingPage {
     }
 
     nextSlide(): void {
-        
+
         console.log("FIRRED")
         this.slides.getActiveIndex().then(index => {
             console.log(index);
@@ -33,7 +33,7 @@ export class OnboardingPage {
         });
     }
 
-    slideChanged(): void { 
+    slideChanged(): void {
         console.log("FIRRED")
         this.slides.getActiveIndex().then(index => {
            console.log(index);

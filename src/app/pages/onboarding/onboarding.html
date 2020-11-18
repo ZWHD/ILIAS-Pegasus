@@ -1,5 +1,5 @@
 <div class="page_onboarding">
-    <ion-header>
+    <!-- <ion-header>
         <ion-toolbar>
             <ion-buttons slot="primary">
                 <ion-button (click)="nextSlide()" color="light">
@@ -7,15 +7,16 @@
                 </ion-button>
             </ion-buttons>
         </ion-toolbar>
-    </ion-header>
+    </ion-header> -->
     <ion-content no-padding fullscreen="true">
-        <ion-slides pager="true" #slides (ionSlideDrag)="slideChanged()">
+        <ion-slides   pager="false" #slides (ionSlideDrag)="slideChanged()">
 
             <ion-slide class="step-one">
                 <ion-grid>
+                    <ion-row style="height:20vh"></ion-row>
                     <ion-row>
                         <ion-col size="12">
-                            <img src="assets/img/onboarding_welcome.png" />
+                            <img src="assets/img/onboarding_welcome.png" style="object-fit: scale-down; padding-left: 40px; padding-right: 40px;"/>
                         </ion-col>
                     </ion-row>
                     <ion-row>
@@ -25,26 +26,26 @@
                     </ion-row>
                     <ion-row>
                         <ion-col size="2" align-self-center>
-                            <ion-img src="assets/icon/obj_file.svg"> </ion-img>
+                            <img src="assets/icon/obj_file.svg"/>
                         </ion-col>
                         <ion-col size="10" class="ion-text-start">
-                            <p>{{ 'onboarding.function1' | translate:[]}}</p>
+                            <p class="ion-no-margin">{{ 'onboarding.function1' | translate:[]}}</p>
                         </ion-col>
                     </ion-row>
                     <ion-row>
                         <ion-col size="2" align-self-center>
-                            <img src="assets/icon/more.svg" />
+                            <img src="assets/icon/favorites_filled.svg" />
                         </ion-col>
                         <ion-col size="10" class="ion-text-start">
-                            <p>{{ 'onboarding.function2' | translate:[]}}</p>
+                            <p class="ion-no-margin">{{ 'onboarding.function2' | translate:[]}}</p>
                         </ion-col>
                     </ion-row>
                     <ion-row>
                         <ion-col size="2" align-self-center>
-                            <img src="assets/img/onboarding_key.svg" />
+                            <img style="color: white;" src="assets/img/onboarding_key.svg"/>
                         </ion-col>
                         <ion-col size="10" class="ion-text-start">
-                            <p>{{ 'onboarding.function3' | translate:[]}}</p>
+                            <p class="ion-no-margin">{{ 'onboarding.function3' | translate:[]}}</p>
                         </ion-col>
                     </ion-row>
                     <ion-row>
@@ -58,11 +59,13 @@
                             >
                         </ion-col>
                     </ion-row>
+                    <ion-row style="height:20vh"></ion-row>
                 </ion-grid>
             </ion-slide>
 
             <ion-slide class="step-one">
                 <ion-grid>
+                    <ion-row style="height:20vh"></ion-row>
                     <ion-row>
                         <ion-col size="12">
                             <img
@@ -99,12 +102,14 @@
                         </ion-col>
 
                     </ion-row>
+                    <ion-row style="height:20vh"></ion-row>
                 </ion-grid>
 
 
             </ion-slide>
             <ion-slide class="step-three">
                 <ion-grid>
+                    <ion-row style="height:20vh"></ion-row>
                     <ion-row>
                         <ion-col size="12">
                             <img src="assets/icon/menu_lock.svg" />
@@ -146,6 +151,7 @@
                         >
                         </ion-col>
                     </ion-row>
+                    <ion-row style="height:20vh"></ion-row>
 
                 </ion-grid>
             </ion-slide>

@@ -19,7 +19,7 @@ ion-icon {
   }
 
 .content, .ion-header, ion-toolbar {
-    font-family: 'Raleway', sans-serif !important;
+    font-family: 'Arial' !important;
 }
 
 .top-header{
@@ -43,6 +43,13 @@ ion-tab-bar{
 
 .no-ionic-text{
     color: var(--ion-color-light);
+}
+
+.modal-wrapper{
+    --width: 100vw !important;
+    --height: 100vh !important;
+    --min-width: 100vw !important;
+    --min-height: 100vh !important;
 }
 
 // Animations
