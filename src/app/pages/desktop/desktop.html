@@ -10,7 +10,7 @@
 <ion-content >
     <ion-grid class="desktop-grid">
         <ion-row>
-            <ion-col size="12" size-sm="6" size-md="4" size-lg="4" size-xl="6" text-center>
+            <ion-col [hidden]="devWidth <576 && !isLandscape" size="12" size-sm="4" size-md="4" size-lg="4" size-xl="4" text-center>
                 <ion-card button="true" class="tile ion-no-margin" (click)="navigateTo('content')">
                 <ion-card class="content ion-no-margin" >
                     <ion-img src="assets/icon/desktop_courses_4.0.svg" (load)="svgLoaded()" (click)="navigateTo('content')"></ion-img>
@@ -19,7 +19,16 @@
                 </ion-card>
                 </ion-card>
             </ion-col>
-            <ion-col size="6"  size-sm="6" size-md="4" size-lg="4" size-xl="6" text-center>
+
+            <ion-col [hidden]="devWidth >=576 || isLandscape" size="12" size-sm="4" size-md="4" size-lg="4" size-xl="4" text-center>
+                <ion-card id="first-tile" button="true" class="ion-no-margin" (click)="navigateTo('content')">
+                    <ion-img id="first-tile-img" src="assets/icon/desktop_courses_4.0.svg" (load)="svgLoaded()" (click)="navigateTo('content')"></ion-img>
+                    <!-- <object class=tile-image type="image/svg+xml" data="assets/icon/desktop_courses_4.0.svg" (load)="svgLoaded()" (click)="navigateTo('content')"></object> -->
+                    <ion-card-header text-uppercase color="transparent"> {{ 'object-list.title' | translate}} </ion-card-header>
+                </ion-card>
+            </ion-col>
+
+            <ion-col size="6"  size-sm="4" size-md="4" size-lg="4" size-xl="4" text-center>
                 <ion-card button="true" class="tile ion-no-margin"  (click)="navigateTo('favorites')">
                 <ion-card class="content ion-no-margin">
                     <ion-img src="assets/icon/desktop_favorites_4.0.svg" (load)="svgLoaded()" (click)="navigateTo('favorites')"></ion-img>
@@ -27,7 +36,7 @@
                 </ion-card>
                 </ion-card>
             </ion-col>
-            <ion-col size="6"  size-sm="6" size-md="4" size-lg="4" size-xl="6" text-center >
+            <ion-col size="6"  size-sm="4" size-md="4" size-lg="4" size-xl="4" text-center >
                 <ion-card button="true" class="tile ion-no-margin" (click)="navigateTo('news')">
                 <ion-card class="content ion-no-margin" >
                     <ion-img src="assets/icon/desktop_news_4.0.svg" (load)="svgLoaded()" (click)="navigateTo('news')"></ion-img>

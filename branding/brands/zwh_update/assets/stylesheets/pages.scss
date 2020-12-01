@@ -51,6 +51,24 @@ page-desktop{
     }
 
 
+    #first-tile {
+        opacity: 0.9;
+        border-color: var(--ion-item-border-color);
+        border-style:solid;
+        border-width: var(--ion-item-border-width);
+        border-radius: var(--border-radius);
+    }
+
+    #first-tile-img {
+        height: auto;
+        width: 60%;
+        margin: auto;
+        display: block;
+        pointer-events: none;
+    }
+
+
+
     .tile {
         position: relative;
         width: 100%;

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<widget android-versionCode="2020111801" id="de.zwh.iqlernwelt" ios-CFBundleVersion="20201118.1" version="4.2.0" xmlns="http://www.w3.org/ns/widgets" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>IQ Netzwerk</name>
+<widget android-versionCode="2020120101" id="de.zwh.lernwelt" ios-CFBundleVersion="20201201.1" version="4.2.0" xmlns="http://www.w3.org/ns/widgets" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>Lernwelt</name>
     <description>Download, sync and store ILIAS-files on your device</description>
     <author email="info@studer-raimann.ch" href="https://www.studer-raimann.ch/">studer + raimann ag</author>
     <content src="index.html"/>

@@ -1,6 +1,6 @@
 /** angular */
 import {Component, Inject, OnInit} from "@angular/core";
-import {NavController} from "@ionic/angular";
+import {Events, NavController, Platform} from "@ionic/angular";
 /** services */
 import {Builder} from "../../services/builder.base";
 import {LINK_BUILDER, LinkBuilder} from "../../services/link/link-builder.service";
@@ -24,7 +24,8 @@ import { Router } from "@angular/router";
 export class DesktopPage implements OnInit {
 
     readonly installations: Array<ILIASInstallation> = [];
-
+    public devWidth: number;
+    public isLandscape: boolean;
 
 
     constructor(
@@ -34,11 +35,25 @@ export class DesktopPage implements OnInit {
         private readonly openInIliasActionFactory: (title: string, urlBuilder: Builder<Promise<string>>) => OpenObjectInILIASAction,
         @Inject(LINK_BUILDER)
         private readonly linkBuilder: LinkBuilder,
-    ) {}
+        private readonly platform: Platform,
+    ) {
+        this.devWidth = this.platform.width();
+        window.onresize = () => {
+            this.devWidth = this.platform.width()
+            this.isLandscape = this.platform.isLandscape()
+        }
+
+    }
 
     ngOnInit(): void {
         // alert('On Init ran')
     }
+
+
+    ionViewWillEnter():void{
+        this.devWidth = this.platform.width()
+    }
+
 
     // count the number of loaded SVGs and set theme once all of them are loaded
     svgLoaded(): void {

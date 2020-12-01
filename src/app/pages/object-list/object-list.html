@@ -64,23 +64,23 @@
                         <ion-card  class="ion-margin-horizontal"  button="true" *ngFor="let entry of content" (click)="onClick(entry.object)" color="transparent">
                             <ion-row class="ion-align-items-center">
 
-                                <ion-col size="2" >
+                                <ion-col size="2" size-sm="2" >
                                     <img class="object-presenter-icon" [src]="entry.presenter.icon()">
                                     <ion-badge *ngIf="entry.object.isLinked()" >
                                         <img src="{{this.getBadgeSrc()}}">
                                     </ion-badge>
                                 </ion-col>
 
-                                <ion-col size="8">
-                                    <ion-card-content>
+                                <ion-col size="6" size-sm="8">
+                                    <ion-card-content class="ion-no-padding ion-no-margin">
                                         <span *ngIf="entry.presenter.showTypeAsText()">{{ entry.presenter.typeLangVar() | translate:[] }}:</span>
                                         {{ entry.presenter.title() }}
                                         <span *ngIf="!entry.presenter.title()">{{ 'no_title' | translate:[] }}</span>
                                     </ion-card-content>
                                 </ion-col>
 
-                                <ion-col size="2" height="100%" >
-                                    <ion-buttons class="ion-justify-content-end ion-align-items-end" height="100%" mode="ios">
+                                <ion-col size="4" size-sm="2" height="100%" >
+                                    <ion-buttons class="ion-justify-content-end ion-align-items-end ion-no-padding ion-no-margin" height="100%" mode="ios">
                                         <ion-button height="100%" mode="ios"  *ngIf="!entry.object.isFavorite" (click)="executeSetFavoriteValueAction(entry.object, true);$event.stopPropagation();">
                                             <ion-icon button="true" slot="icon-only" src="./assets/icon/favorites-outline.svg"></ion-icon>
                                         </ion-button>

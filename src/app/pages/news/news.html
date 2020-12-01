@@ -9,67 +9,130 @@
     </ion-toolbar>
 </ion-header>
 <ion-content class="ion-no-padding ion-no-margin">
+    <!--Actual content-->
+    <ng-container *ngIf="!isLoading">
+        <ion-refresher
+            (ionRefresh)="startNewsSync($event)"
+            [closeDuration]="400"
+            [pullMin]="150">
+            <ion-refresher-content id="refresher-content"
+                                pullingIcon="arrow-down"
+                                pullingText="{{ 'sync.pull_to_sync' | translate:[] }}"
+                                refreshingText="{{ footerToolbar.loadingText }}">
+            </ion-refresher-content>
+        </ion-refresher>
 
-    <ion-refresher
-        (ionRefresh)="startNewsSync($event)"
-        [closeDuration]="400"
-        [pullMin]="150">
-        <ion-refresher-content id="refresher-content"
-                               pullingIcon="arrow-down"
-                               pullingText="{{ 'sync.pull_to_sync' | translate:[] }}"
-                               refreshingText="{{ footerToolbar.loadingText }}">
-        </ion-refresher-content>
-    </ion-refresher>
-
-    <ion-grid>
-        <ion-row>
-            <ion-col size="12">
-                <ion-list>
-                    <ion-item  class="ion-no-padding" lines="none" *ngFor="let newsPresenter of newsPresenters" (click)="openNews(newsPresenter[0].newsId, newsPresenter[0].newsContext)">
-                        <ion-avatar slot="start">
-                            <img src="{{newsPresenter[1].icon()}}">
-                        </ion-avatar>
-                        <ion-card slot="end" color="transparent" >
-                            <ion-card-header>
-                                <ion-card-subtitle *ngIf="newsPresenter[0].title">{{newsPresenter[0].title}}</ion-card-subtitle>
-                                <ion-card-subtitle *ngIf="(newsPresenter[0].content | toString) !== ''" [innerHtml]="newsPresenter[0].content" ></ion-card-subtitle>
-                            </ion-card-header>
-                                <ion-card-content  *ngIf="newsPresenter[0].subtitle">{{newsPresenter[0].subtitle}}</ion-card-content>
-                                <ion-card-subtitle class="ion-text-right ion-margin-end ion-margin-bottom">{{newsPresenter[0].updateDate | date:"dd. MMM HH:mm"}}</ion-card-subtitle>
-                        </ion-card>
-                    </ion-item>
-                    <ion-card *ngIf="newsPresenters === undefined || newsPresenters.length === 0">
-                        <ion-card-content>
-                            <p class="info-text">{{ 'new-objects.no_new_items' | translate:[] }}</p>
-                    </ion-card-content>
-                    </ion-card>
-
-
-        <!-- <ion-card *ngFor="let newsPresenter of newsPresenters" (click)="openNews(newsPresenter[0].newsId, newsPresenter[0].newsContext)">
-                <ion-card-header>
-                        <ion-card-subtitle>{{newsPresenter[0].updateDate | date:"dd. MMM yyyy HH:mm"}}</ion-card-subtitle>
-                        <ion-card-title>
-                            <ion-avatar item-start>
+        <ion-grid>
+            <ion-row>
+                <ion-col size="12">
+                    <ion-list>
+                        <ion-item  class="ion-no-padding" lines="none" *ngFor="let newsPresenter of newsPresenters" (click)="openNews(newsPresenter[0].newsId, newsPresenter[0].newsContext)">
+                            <ion-avatar slot="start">
                                 <img src="{{newsPresenter[1].icon()}}">
                             </ion-avatar>
-                            {{newsPresenter[0].title}}
-                        </ion-card-title>
-                </ion-card-header>
-                      <ion-card-content>
-                            <p class="info-text">{{newsPresenter[0].subtitle}}</p>
-                            <p class="info-text" [innerHtml]="newsPresenter[0].content"></p>
-                    </ion-card-content>
+                            <ion-card slot="end" color="transparent" >
+                                <ion-card-header>
+                                    <ion-card-subtitle *ngIf="newsPresenter[0].title">{{newsPresenter[0].title}}</ion-card-subtitle>
+                                    <ion-card-subtitle *ngIf="(newsPresenter[0].content | toString) !== ''" [innerHtml]="newsPresenter[0].content" ></ion-card-subtitle>
+                                </ion-card-header>
+                                    <ion-card-content  *ngIf="newsPresenter[0].subtitle">{{newsPresenter[0].subtitle}}</ion-card-content>
+                                    <ion-card-subtitle class="ion-text-right ion-margin-end ion-margin-bottom">{{newsPresenter[0].updateDate | date:"dd. MMM HH:mm"}}</ion-card-subtitle>
+                            </ion-card>
+                        </ion-item>
+                        <ion-card *ngIf="newsPresenters === undefined || newsPresenters.length === 0">
+                            <ion-card-content>
+                                <p class="info-text">{{ 'new-objects.no_new_items' | translate:[] }}</p>
+                        </ion-card-content>
+                        </ion-card>
 
-        </ion-card>
-        <ion-card *ngIf="newsPresenters === undefined">
-            <ion-card-content>
-                <p class="info-text">{{ 'new-objects.no_new_items' | translate:[] }}</p>
-        </ion-card-content>
-        </ion-card> -->
-    </ion-list>
-            </ion-col>
-        </ion-row>
-    </ion-grid>
+
+            <!-- <ion-card *ngFor="let newsPresenter of newsPresenters" (click)="openNews(newsPresenter[0].newsId, newsPresenter[0].newsContext)">
+                    <ion-card-header>
+                            <ion-card-subtitle>{{newsPresenter[0].updateDate | date:"dd. MMM yyyy HH:mm"}}</ion-card-subtitle>
+                            <ion-card-title>
+                                <ion-avatar item-start>
+                                    <img src="{{newsPresenter[1].icon()}}">
+                                </ion-avatar>
+                                {{newsPresenter[0].title}}
+                            </ion-card-title>
+                    </ion-card-header>
+                        <ion-card-content>
+                                <p class="info-text">{{newsPresenter[0].subtitle}}</p>
+                                <p class="info-text" [innerHtml]="newsPresenter[0].content"></p>
+                        </ion-card-content>
+
+            </ion-card>
+            <ion-card *ngIf="newsPresenters === undefined">
+                <ion-card-content>
+                    <p class="info-text">{{ 'new-objects.no_new_items' | translate:[] }}</p>
+            </ion-card-content>
+            </ion-card> -->
+                 </ion-list>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </ng-container>
+
+
+    <!--Loading View -->
+    <ng-container *ngIf="isLoading">
+        <ion-list>
+            <ion-item lines="none">
+                <ion-thumbnail slot="start">
+                    <ion-skeleton-text animated></ion-skeleton-text>
+                </ion-thumbnail>
+                <ion-card slot="end" color="transparent" class="ion-padding-bottom" >
+                    <ion-card-header>
+                        <ion-card-subtitle><ion-skeleton-text animated style="width: 50%; height:1em"></ion-skeleton-text></ion-card-subtitle><br>
+                    </ion-card-header>
+                        <ion-card-content>
+                            <ion-skeleton-text animated style="width: 85%;"></ion-skeleton-text>
+                            <ion-skeleton-text animated style="width: 85%;"></ion-skeleton-text>
+                            <ion-skeleton-text animated style="width: 60%; "></ion-skeleton-text>
+                            <ion-skeleton-text animated style="width: 90px; float:right; margin-right:10px"></ion-skeleton-text>
+                        </ion-card-content>
+                </ion-card>
+            </ion-item>
+
+            <ion-item lines="none">
+                <ion-thumbnail slot="start">
+                    <ion-skeleton-text animated></ion-skeleton-text>
+                </ion-thumbnail>
+                <ion-card slot="end" color="transparent" class="ion-padding-bottom" >
+                    <ion-card-header>
+                        <ion-card-subtitle><ion-skeleton-text animated style="width: 50%; height:1em"></ion-skeleton-text></ion-card-subtitle><br>
+                    </ion-card-header>
+                        <ion-card-content>
+                            <ion-skeleton-text animated style="width: 85%;"></ion-skeleton-text>
+                            <ion-skeleton-text animated style="width: 85%;"></ion-skeleton-text>
+                            <ion-skeleton-text animated style="width: 60%; "></ion-skeleton-text>
+                            <ion-skeleton-text animated style="width: 90px; float:right; margin-right:10px"></ion-skeleton-text>
+                        </ion-card-content>
+                </ion-card>
+            </ion-item>
+
+            <ion-item lines="none">
+                <ion-thumbnail slot="start">
+                    <ion-skeleton-text animated></ion-skeleton-text>
+                </ion-thumbnail>
+                <ion-card slot="end" color="transparent" class="ion-padding-bottom" >
+                    <ion-card-header>
+                        <ion-card-subtitle><ion-skeleton-text animated style="width: 50%; height:1em"></ion-skeleton-text></ion-card-subtitle><br>
+                    </ion-card-header>
+                        <ion-card-content>
+                            <ion-skeleton-text animated style="width: 85%;"></ion-skeleton-text>
+                            <ion-skeleton-text animated style="width: 85%;"></ion-skeleton-text>
+                            <ion-skeleton-text animated style="width: 60%; "></ion-skeleton-text>
+                            <ion-skeleton-text animated style="width: 90px; float:right; margin-right:10px"></ion-skeleton-text>
+                        </ion-card-content>
+                </ion-card>
+            </ion-item>
+
+
+
+        </ion-list>
+
+    </ng-container>
 
 
 </ion-content>

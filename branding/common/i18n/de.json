@@ -308,6 +308,8 @@
           "crs_cal_reg_end":"Ende des Registrierunszeitraumes",
           "crs_cal_start":"Kursbeginn",
           "crs_cal_end":"Kursende",
+          "grp_cal_start":"Gruppe beginnt",
+          "grp_cal_end":"Gruppe endet",
           "grant-access-header":"Synch Fehlgeschlagen",
           "grant-access-message":"Um Deinen Kalender synchronisieren zu können benötigen wir Deine Erlaubnis auf Deinen Kalendar zugreifen zu dürfen. Hier kannst Du Deine Einstellungen ändern.",
           "grant-access-ok":"OK",

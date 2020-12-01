@@ -31,6 +31,7 @@ export class NewsPage
 {
 
     newsPresenters: Array<[NewsItemModel, ILIASObjectPresenter]>;
+    isLoading: boolean = true;
 
     private readonly log: Logger = Logging.getLogger(NewsPage.name);
 
@@ -109,18 +110,20 @@ export class NewsPage
             }
 
             this.log.info(() => "Sync start");
+            this.isLoading = true;
             this.footerToolbar.addJob(Job.Synchronize, this.translate.instant("synchronisation_in_progress"));
 
             await this.sync.executeNewsSync();
 
             //maybe some objects came in new.
             this.footerToolbar.removeJob(Job.Synchronize);
+            this.isLoading = false;
 
         } catch (error) {
 
             this.log.error(() => `Error occured in sync implemented in news page. Error: ${error}`);
             this.footerToolbar.removeJob(Job.Synchronize);
-
+            this.isLoading = false;
             throw error;
         }
     }
